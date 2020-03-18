@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{62A0F76D-4BBA-45E9-87AE-138ADC6B8FA9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{3BF533FA-8C31-490D-9BB6-63CC820BA8FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{6F02BDDC-94F6-49F2-B2BA-D0115F79D594}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{6F153474-49DB-4676-9D0A-72217C94244F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{F7C06BD5-BC5A-4B1D-8B8D-8A0C49255806}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservices", "{A47575A7-7356-4E2F-9BAF-C07552A3B5CB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{4E1051D5-FB0F-4E6C-BEB8-E527C786942B}"
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F7C06BD5-BC5A-4B1D-8B8D-8A0C49255806} = {62A0F76D-4BBA-45E9-87AE-138ADC6B8FA9}
+		{A47575A7-7356-4E2F-9BAF-C07552A3B5CB} = {62A0F76D-4BBA-45E9-87AE-138ADC6B8FA9}
+		{4E1051D5-FB0F-4E6C-BEB8-E527C786942B} = {62A0F76D-4BBA-45E9-87AE-138ADC6B8FA9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {321CBC5F-1363-45AB-A890-0A2377AC562B}
+	EndGlobalSection
+EndGlobal
