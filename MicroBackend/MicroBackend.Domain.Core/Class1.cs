@@ -6,3 +6,4 @@ namespace MicroBackend.Domain.Core
     {
     }
 }
+ 
