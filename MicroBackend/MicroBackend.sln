@@ -17,7 +17,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{4E1051D5-FB0F-4E6C-BEB8-E527C786942B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBackend.Domain.Core", "MicroBackend.Domain.Core\MicroBackend.Domain.Core.csproj", "{AC54514E-EA9E-4B8E-A16E-072021C256B8}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC54514E-EA9E-4B8E-A16E-072021C256B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC54514E-EA9E-4B8E-A16E-072021C256B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC54514E-EA9E-4B8E-A16E-072021C256B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC54514E-EA9E-4B8E-A16E-072021C256B8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
@@ -25,6 +37,7 @@ Global
 		{F7C06BD5-BC5A-4B1D-8B8D-8A0C49255806} = {62A0F76D-4BBA-45E9-87AE-138ADC6B8FA9}
 		{A47575A7-7356-4E2F-9BAF-C07552A3B5CB} = {62A0F76D-4BBA-45E9-87AE-138ADC6B8FA9}
 		{4E1051D5-FB0F-4E6C-BEB8-E527C786942B} = {62A0F76D-4BBA-45E9-87AE-138ADC6B8FA9}
+		{AC54514E-EA9E-4B8E-A16E-072021C256B8} = {F7C06BD5-BC5A-4B1D-8B8D-8A0C49255806}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {321CBC5F-1363-45AB-A890-0A2377AC562B}
