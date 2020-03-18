@@ -1,2 +1,2 @@
 # MicroBackend
-Microservice Backend Architecture
+Microservice Architecture
