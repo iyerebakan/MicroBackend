@@ -13,7 +13,6 @@ namespace MicroBackend.Auth.Application.Interfaces
         Task<ApplicationUsers> Login(LoginEmailDto loginEmail);
         Task<ApplicationUsers> LoginWithPassword(LoginEmailAndPasswordDto loginEmailAndPassword);
         Task<ApplicationUsers> Register(RegisterDto register);
-        Task<ApplicationUsers> UserExists(string email);
         Task<AccessToken> CreateToken(ApplicationUsers applicationUser);
     }
 }

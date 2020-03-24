@@ -8,9 +8,9 @@ using System.Text;
 
 namespace MicroBackend.Auth.Data.Repository
 {
-    public class AuthRepository : UserManager<ApplicationUsers>
+    public class UserRepository : UserManager<ApplicationUsers>
     {
-        public AuthRepository(IUserStore<ApplicationUsers> store, IOptions<IdentityOptions> optionsAccessor, 
+        public UserRepository(IUserStore<ApplicationUsers> store, IOptions<IdentityOptions> optionsAccessor, 
             IPasswordHasher<ApplicationUsers> passwordHasher, IEnumerable<IUserValidator<ApplicationUsers>> userValidators, 
             IEnumerable<IPasswordValidator<ApplicationUsers>> passwordValidators, ILookupNormalizer keyNormalizer, 
             IdentityErrorDescriber errors, IServiceProvider services, ILogger<UserManager<ApplicationUsers>> logger)

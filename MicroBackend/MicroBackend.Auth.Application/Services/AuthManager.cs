@@ -12,17 +12,17 @@ namespace MicroBackend.Auth.Application.Services
 {
     public class AuthManager : IAuthService
     {
-        private readonly AuthRepository _authRepository;
+        private readonly IUserService _userService;
         private readonly ITokenHelper _tokenHelper;
-        public AuthManager(AuthRepository authRepository, ITokenHelper tokenHelper)
+        public AuthManager(IUserService userService, ITokenHelper tokenHelper)
         {
-            _authRepository = authRepository;
+            _userService = userService;
             _tokenHelper = tokenHelper;
         }
 
         public async Task<AccessToken> CreateToken(ApplicationUsers applicationUser)
         {
-            var roles = await _authRepository.GetRolesAsync(applicationUser);
+            var roles = await _userService.GetRolesAsync(applicationUser);
 
             var tokenInfo = new TokenInfo
             {
@@ -36,7 +36,7 @@ namespace MicroBackend.Auth.Application.Services
 
         public async Task<ApplicationUsers> Login(LoginEmailDto loginEmail)
         {
-            var user = await UserExists(loginEmail.Email);
+            var user = await _userService.UserExists(loginEmail.Email);
             if(user != null)
             {
                 return user;
@@ -47,10 +47,10 @@ namespace MicroBackend.Auth.Application.Services
 
         public async Task<ApplicationUsers> LoginWithPassword(LoginEmailAndPasswordDto loginEmailAndPassword)
         {
-            var user = await UserExists(loginEmailAndPassword.Email).ConfigureAwait(true);
+            var user = await _userService.UserExists(loginEmailAndPassword.Email).ConfigureAwait(true);
             if (user != null)
             {
-                var userToCheck = await _authRepository.CheckPasswordAsync(user, loginEmailAndPassword.Password);
+                var userToCheck = await _userService.CheckPasswordAsync(user, loginEmailAndPassword.Password);
                 if (!userToCheck)
                 {
                     return null;
@@ -65,18 +65,12 @@ namespace MicroBackend.Auth.Application.Services
         public async Task<ApplicationUsers> Register(RegisterDto register)
         {
             var user = new ApplicationUsers { UserName = register.UserName, Email = register.Email };
-            var result = await _authRepository.CreateAsync(user, register.Password);
-            if (result.Succeeded)
-            {
+            var result = await _userService.CreateAsync(user, register.Password);
+            if (result)
                 return user;
-            }
 
             return null;
         }
 
-        public async Task<ApplicationUsers> UserExists(string email)
-        {
-            return await _authRepository.FindByEmailAsync(email);
-        }
     }
 }

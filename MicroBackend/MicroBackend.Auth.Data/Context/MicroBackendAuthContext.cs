@@ -7,7 +7,7 @@ using System.Text;
 
 namespace MicroBackend.Auth.Data.Context
 {
-    public class MicroBackendAuthContext : IdentityDbContext<ApplicationUsers>
+    public class MicroBackendAuthContext : IdentityDbContext<ApplicationUsers,ApplicationRoles,string>
     {
         public MicroBackendAuthContext(DbContextOptions options) : base(options)
         {

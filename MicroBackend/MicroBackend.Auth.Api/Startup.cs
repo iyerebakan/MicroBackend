@@ -39,14 +39,17 @@ namespace MicroBackend.Auth.Api
        {
             services.AddScoped<ITokenHelper, JwtService>();
             services.AddScoped<IAuthService, AuthManager>();
-            services.AddScoped<AuthRepository>();
+            services.AddScoped<IRoleService, RoleManager>();
+            services.AddScoped<IUserService, UserManager>();
+            services.AddScoped<UserRepository>();
+            services.AddScoped<RoleRepository>();
 
             services.AddDbContext<MicroBackendAuthContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("MicroBackendAuthConnection"));
             });
 
-            services.AddIdentity<ApplicationUsers, IdentityRole>().AddEntityFrameworkStores<MicroBackendAuthContext>();
+            services.AddIdentity<ApplicationUsers, ApplicationRoles>().AddEntityFrameworkStores<MicroBackendAuthContext>();
             services.AddControllers();
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<JWT.Models.TokenOptions>();
