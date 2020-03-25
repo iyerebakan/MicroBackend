@@ -54,6 +54,5 @@ namespace MicroBackend.Auth.Application.Services
             var result = await _userRepository.CreateAsync(applicationUser, password);
             return result.Succeeded;
         }
-
     }
 }

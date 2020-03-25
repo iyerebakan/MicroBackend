@@ -10,7 +10,7 @@ namespace MicroBackend.Auth.Application.Interfaces
 {
     public interface IAuthService
     {
-        Task<ApplicationUsers> Login(LoginEmailDto loginEmail);
+        Task<ApplicationUsers> ExternalLogin(LoginEmailDto loginEmail);
         Task<ApplicationUsers> LoginWithPassword(LoginEmailAndPasswordDto loginEmailAndPassword);
         Task<ApplicationUsers> Register(RegisterDto register);
         Task<AccessToken> CreateToken(ApplicationUsers applicationUser);

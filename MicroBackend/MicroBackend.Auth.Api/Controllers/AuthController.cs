@@ -18,10 +18,28 @@ namespace MicroBackend.Auth.Api.Controllers
         {
             _authService = authService;
         }
-        [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginEmailDto loginEmailDto)
+        [HttpPost("externallogin")]
+        public async Task<IActionResult> ExternalLogin(LoginEmailDto loginEmailDto)
         {
-            var userToLogin = await _authService.Login(loginEmailDto);
+            var userToLogin = await _authService.ExternalLogin(loginEmailDto);
+            if (userToLogin == null)
+            {
+                return BadRequest("User does not exists");
+            }
+
+            var result = await _authService.CreateToken(userToLogin).ConfigureAwait(true);
+            if (result != null)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest("Sorun var.");
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginEmailAndPasswordDto loginEmailAndPasswordDto)
+        {
+            var userToLogin = await _authService.LoginWithPassword(loginEmailAndPasswordDto);
             if (userToLogin == null)
             {
                 return BadRequest("User does not exists");

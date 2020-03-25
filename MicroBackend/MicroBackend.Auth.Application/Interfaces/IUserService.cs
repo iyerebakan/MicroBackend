@@ -1,5 +1,6 @@
 ﻿using MicroBackend.Auth.Domain.Dtos;
 using MicroBackend.Auth.Domain.Models;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Text;

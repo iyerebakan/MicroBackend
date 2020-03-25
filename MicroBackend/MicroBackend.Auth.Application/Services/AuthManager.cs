@@ -34,14 +34,14 @@ namespace MicroBackend.Auth.Application.Services
             return _tokenHelper.CreateToken(tokenInfo);
         }
 
-        public async Task<ApplicationUsers> Login(LoginEmailDto loginEmail)
+        public async Task<ApplicationUsers> ExternalLogin(LoginEmailDto loginEmail)
         {
             var user = await _userService.UserExists(loginEmail.Email);
             if(user != null)
             {
                 return user;
             }
-
+            
             return null;
         }
 
@@ -55,7 +55,6 @@ namespace MicroBackend.Auth.Application.Services
                 {
                     return null;
                 }
-
                 return user;
             }
 
