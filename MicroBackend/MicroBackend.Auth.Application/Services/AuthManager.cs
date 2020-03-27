@@ -2,7 +2,10 @@
 using MicroBackend.Auth.Data.Repository;
 using MicroBackend.Auth.Domain.Dtos;
 using MicroBackend.Auth.Domain.Models;
-using MicroBackend.Domain.Core.Utilities.Security.Token;
+using MicroBackend.Domain.Core.Services.Constants;
+using MicroBackend.Domain.Core.Services.Interfaces;
+using MicroBackend.Domain.Core.Services.Results;
+using MicroBackend.Domain.Core.Security.Token;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +23,7 @@ namespace MicroBackend.Auth.Application.Services
             _tokenHelper = tokenHelper;
         }
 
-        public async Task<AccessToken> CreateToken(ApplicationUsers applicationUser)
+        public async Task<IServiceDataResult<AccessToken>> CreateToken(ApplicationUsers applicationUser)
         {
             var roles = await _userService.GetRolesAsync(applicationUser);
 
@@ -31,21 +34,21 @@ namespace MicroBackend.Auth.Application.Services
                 Id = applicationUser.Id,
                 UserName = applicationUser.UserName
             };
-            return _tokenHelper.CreateToken(tokenInfo);
+            return new SuccessDataResult<AccessToken>(_tokenHelper.CreateToken(tokenInfo));
         }
 
-        public async Task<ApplicationUsers> ExternalLogin(LoginEmailDto loginEmail)
+        public async Task<IServiceDataResult<ApplicationUsers>> ExternalLogin(LoginEmailDto loginEmail)
         {
             var user = await _userService.UserExists(loginEmail.Email);
             if(user != null)
             {
-                return user;
+                return new SuccessDataResult<ApplicationUsers>(user);
             }
-            
-            return null;
+
+            return new ErrorDataResult<ApplicationUsers>(GlobalErrors.NotFound,"User does not exists..!");
         }
 
-        public async Task<ApplicationUsers> LoginWithPassword(LoginEmailAndPasswordDto loginEmailAndPassword)
+        public async Task<IServiceDataResult<ApplicationUsers>> LoginWithPassword(LoginEmailAndPasswordDto loginEmailAndPassword)
         {
             var user = await _userService.UserExists(loginEmailAndPassword.Email).ConfigureAwait(true);
             if (user != null)
@@ -53,22 +56,22 @@ namespace MicroBackend.Auth.Application.Services
                 var userToCheck = await _userService.CheckPasswordAsync(user, loginEmailAndPassword.Password);
                 if (!userToCheck)
                 {
-                    return null;
+                    return new ErrorDataResult<ApplicationUsers>(GlobalErrors.NotFound, "User's password wrong..!"); ;
                 }
-                return user;
+                return new SuccessDataResult<ApplicationUsers>(user);
             }
 
-            return null;
+            return new ErrorDataResult<ApplicationUsers>(GlobalErrors.NotFound, "User does not exists..!");
         }
 
-        public async Task<ApplicationUsers> Register(RegisterDto register)
+        public async Task<IServiceDataResult<ApplicationUsers>> Register(RegisterDto register)
         {
             var user = new ApplicationUsers { UserName = register.UserName, Email = register.Email };
             var result = await _userService.CreateAsync(user, register.Password);
             if (result)
-                return user;
+                return new SuccessDataResult<ApplicationUsers>(user);
 
-            return null;
+            return new ErrorDataResult<ApplicationUsers>(GlobalErrors.NotCompleted,"User does not save to database..!");
         }
 
     }

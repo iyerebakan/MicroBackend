@@ -22,54 +22,33 @@ namespace MicroBackend.Auth.Api.Controllers
         public async Task<IActionResult> ExternalLogin(LoginEmailDto loginEmailDto)
         {
             var userToLogin = await _authService.ExternalLogin(loginEmailDto);
-            if (userToLogin == null)
-            {
-                return BadRequest("User does not exists");
-            }
+            if (!userToLogin.Success)
+                return Ok(userToLogin);
 
-            var result = await _authService.CreateToken(userToLogin).ConfigureAwait(true);
-            if (result != null)
-            {
-                return Ok(result);
-            }
-
-            return BadRequest("Sorun var.");
+            var result = await _authService.CreateToken(userToLogin.Data).ConfigureAwait(true);
+            return Ok(result);
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginEmailAndPasswordDto loginEmailAndPasswordDto)
         {
             var userToLogin = await _authService.LoginWithPassword(loginEmailAndPasswordDto);
-            if (userToLogin == null)
-            {
-                return BadRequest("User does not exists");
-            }
+            if (!userToLogin.Success)
+                return Ok(userToLogin);
 
-            var result = await _authService.CreateToken(userToLogin).ConfigureAwait(true);
-            if (result != null)
-            {
-                return Ok(result);
-            }
-
-            return BadRequest("Sorun var.");
+            var result = await _authService.CreateToken(userToLogin.Data).ConfigureAwait(true);
+            return Ok(result);
         }
 
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterDto register)
         {
             var user = await _authService.Register(register);
-            if (user == null)
-            {
-                return BadRequest("User does not saved.");
-            }
+            if (!user.Success)
+                return Ok(user);
 
-            var result = await _authService.CreateToken(user).ConfigureAwait(true);
-            if (result != null)
-            {
-                return Ok(result);
-            }
-
-            return BadRequest("Sorun var.");
+            var result = await _authService.CreateToken(user.Data).ConfigureAwait(true);
+            return Ok(result);
         }
     }
 }

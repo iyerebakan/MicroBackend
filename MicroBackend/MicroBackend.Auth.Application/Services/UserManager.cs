@@ -2,6 +2,9 @@
 using MicroBackend.Auth.Data.Repository;
 using MicroBackend.Auth.Domain.Dtos;
 using MicroBackend.Auth.Domain.Models;
+using MicroBackend.Domain.Core.Services.Constants;
+using MicroBackend.Domain.Core.Services.Interfaces;
+using MicroBackend.Domain.Core.Services.Results;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -28,15 +31,15 @@ namespace MicroBackend.Auth.Application.Services
             return await _userRepository.FindByIdAsync(userid);
         }
 
-        public async Task<bool> AddRoleToUser(RoletoUserDto roletoUserDto)
+        public async Task<IServiceDataResult<bool>> AddRoleToUser(RoletoUserDto roletoUserDto)
         {
             var result = await _userRepository.AddToRoleAsync(await GetUserByUserId(roletoUserDto.Id), roletoUserDto.Rolename);
             if (result.Succeeded)
             {
-                return true;
+                return new SuccessDataResult<bool>(true);
             }
 
-            return false;
+            return new ErrorDataResult<bool>(false, GlobalErrors.NotCompleted, "Roles does not save to database..!");
         }
 
         public async Task<IList<string>> GetRolesAsync(ApplicationUsers applicationUser)

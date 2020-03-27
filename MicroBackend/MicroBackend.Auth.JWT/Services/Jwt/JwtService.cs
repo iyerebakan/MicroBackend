@@ -1,6 +1,6 @@
 ﻿using MicroBackend.Auth.JWT.Models;
 using MicroBackend.Auth.JWT.Services.Encryption;
-using MicroBackend.Domain.Core.Utilities.Security.Token;
+using MicroBackend.Domain.Core.Security.Token;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;

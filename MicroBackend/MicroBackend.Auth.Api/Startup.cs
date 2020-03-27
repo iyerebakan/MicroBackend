@@ -17,7 +17,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using MicroBackend.Auth.JWT.Services.Encryption;
-using MicroBackend.Domain.Core.Utilities.Security.Token;
+using MicroBackend.Domain.Core.Security.Token;
 using MicroBackend.Auth.JWT.Services.Jwt;
 using MicroBackend.Auth.Application.Interfaces;
 using MicroBackend.Auth.Application.Services;
