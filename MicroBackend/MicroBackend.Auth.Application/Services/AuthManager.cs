@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MicroBackend.Domain.Core.Validation;
+using MicroBackend.Auth.Application.ValidationRules;
 
 namespace MicroBackend.Auth.Application.Services
 {
@@ -64,6 +66,7 @@ namespace MicroBackend.Auth.Application.Services
             return new ErrorDataResult<ApplicationUsers>(GlobalErrors.NotFound, "User does not exists..!");
         }
 
+        [ValidationAspect(typeof(RegisterValidator))]
         public async Task<IServiceDataResult<ApplicationUsers>> Register(RegisterDto register)
         {
             var user = new ApplicationUsers { UserName = register.UserName, Email = register.Email };

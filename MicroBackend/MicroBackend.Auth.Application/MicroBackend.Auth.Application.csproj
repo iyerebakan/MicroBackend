@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="5.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.2" />
   </ItemGroup>
 
@@ -15,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MicroBackend.Auth.Data\MicroBackend.Auth.Data.csproj" />
     <ProjectReference Include="..\MicroBackend.Auth.Domain\MicroBackend.Auth.Domain.csproj" />
+    <ProjectReference Include="..\MicroBackend.Auth.JWT\MicroBackend.Auth.JWT.csproj" />
     <ProjectReference Include="..\MicroBackend.Domain.Core\MicroBackend.Domain.Core.csproj" />
   </ItemGroup>
 
