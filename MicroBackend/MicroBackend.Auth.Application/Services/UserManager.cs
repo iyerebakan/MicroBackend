@@ -6,10 +6,13 @@ using MicroBackend.Domain.Core.Services.Constants;
 using MicroBackend.Domain.Core.Services.Interfaces;
 using MicroBackend.Domain.Core.Services.Results;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.WebUtilities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace MicroBackend.Auth.Application.Services
 {
@@ -61,6 +64,45 @@ namespace MicroBackend.Auth.Application.Services
         public async Task<bool> IsEmailConfirmedAsync(ApplicationUsers applicationUser)
         {
             return await _userRepository.IsEmailConfirmedAsync(applicationUser);
+        }
+
+        public async Task<IServiceDataResult<ApplicationUsers>> EmailVerifiedAsync(ApplicationUsers applicationUser,string code)
+        {
+            try
+            {
+                var result = await _userRepository.ConfirmEmailAsync(applicationUser, Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code)));
+                if (result.Succeeded)
+                {
+                    applicationUser.EmailConfirmed = true;
+                    await _userRepository.UpdateAsync(applicationUser);
+                    return new SuccessDataResult<ApplicationUsers>(applicationUser);
+                }
+                return new ErrorDataResult<ApplicationUsers>(applicationUser, GlobalErrors.NotCompleted, message: result.Errors.First().Description);
+            }
+            catch (Exception ex)
+            {
+                return new ErrorDataResult<ApplicationUsers>(applicationUser,GlobalErrors.NotCompleted,message: ex.Message);
+            }
+            
+        }
+
+        public async Task<ApplicationUsers> FindUserByEmail(string email)
+        {
+            return await _userRepository.FindByEmailAsync(email);
+        }
+
+        public async Task<IServiceDataResult<ApplicationUsers>> GenerateVerificationCode(ApplicationUsers applicationUser)
+        {
+            try
+            {
+                string code = await _userRepository.GenerateEmailConfirmationTokenAsync(applicationUser);
+                return new SuccessDataResult<ApplicationUsers>(applicationUser, 
+                        message: WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code)));
+            }
+            catch (Exception ex)
+            {
+                return new ErrorDataResult<ApplicationUsers>(applicationUser, GlobalErrors.NotCompleted, message: ex.Message);
+            }
         }
     }
 }

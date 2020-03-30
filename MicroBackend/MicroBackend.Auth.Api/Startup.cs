@@ -23,6 +23,7 @@ using MicroBackend.Auth.Application.Interfaces;
 using MicroBackend.Auth.Application.Services;
 using MicroBackend.Auth.Data.Repository;
 using MicroBackend.Domain.Core.Extensions;
+using MicroBackend.Auth.Application.Providers;
 
 namespace MicroBackend.Auth.Api
 {
@@ -43,7 +44,19 @@ namespace MicroBackend.Auth.Api
                 options.UseSqlServer(Configuration.GetConnectionString("MicroBackendAuthConnection"));
             });
 
-            services.AddIdentity<ApplicationUsers, ApplicationRoles>().AddEntityFrameworkStores<MicroBackendAuthContext>();
+            services.AddIdentity<ApplicationUsers, ApplicationRoles>(opt => {
+                opt.SignIn.RequireConfirmedEmail = true;
+                opt.Tokens.EmailConfirmationTokenProvider = "emailconfirmation";
+            })
+            .AddEntityFrameworkStores<MicroBackendAuthContext>()
+            .AddDefaultTokenProviders()
+            .AddTokenProvider<EmailConfirmationTokenProvider<ApplicationUsers>>("emailconfirmation");
+
+            services.Configure<DataProtectionTokenProviderOptions>(opt => opt.TokenLifespan = TimeSpan.FromHours(2));
+
+            services.Configure<EmailConfirmationTokenProviderOptions>(opt =>
+                opt.TokenLifespan = TimeSpan.FromDays(3));
+
             services.AddControllers();
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<JWT.Models.TokenOptions>();

@@ -44,11 +44,7 @@ namespace MicroBackend.Auth.Api.Controllers
         public async Task<IActionResult> Register(RegisterDto register)
         {
             var user = await _authService.Register(register);
-            if (!user.Success)
-                return Ok(user);
-
-            var result = await _authService.CreateToken(user.Data).ConfigureAwait(true);
-            return Ok(result);
+            return Ok(user);
         }
     }
 }

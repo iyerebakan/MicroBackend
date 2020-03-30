@@ -13,10 +13,13 @@ namespace MicroBackend.Auth.Application.Interfaces
     {
         Task<IList<string>> GetRolesAsync(ApplicationUsers applicationUser);
         Task<ApplicationUsers> UserExists(string email);
+        Task<ApplicationUsers> FindUserByEmail(string email);
         Task<ApplicationUsers> GetUserByUserId(string userid);
         Task<IServiceDataResult<bool>> AddRoleToUser(RoletoUserDto roletoUserDto);
         Task<bool> CheckPasswordAsync(ApplicationUsers applicationUser, string password);
         Task<bool> CreateAsync(ApplicationUsers applicationUser, string password);
         Task<bool> IsEmailConfirmedAsync(ApplicationUsers applicationUser);
+        Task<IServiceDataResult<ApplicationUsers>> GenerateVerificationCode(ApplicationUsers applicationUser);
+        Task<IServiceDataResult<ApplicationUsers>> EmailVerifiedAsync(ApplicationUsers applicationUser,string code);
     }
 }

@@ -85,7 +85,13 @@ namespace MicroBackend.Auth.Application.Services
         [ValidationAspect(typeof(RegisterValidator))]
         public async Task<IServiceDataResult<ApplicationUsers>> Register(RegisterDto register)
         {
-            var user = new ApplicationUsers { UserName = register.UserName, Email = register.Email };
+            var user = await _userService.UserExists(register.Email);
+            if (user != null)
+            {
+                return new ErrorDataResult<ApplicationUsers>(user, GlobalErrors.NotCompleted, "User is already registered..!");
+            }
+
+            user = new ApplicationUsers { UserName = register.UserName, Email = register.Email };
             var result = await _userService.CreateAsync(user, register.Password);
             if (result)
                 return new SuccessDataResult<ApplicationUsers>(user);
