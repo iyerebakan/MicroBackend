@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MicroBackend.Domain.Core.Validation;
 using MicroBackend.Auth.Application.ValidationRules;
+using MicroBackend.Domain.Core.Services.Business;
 
 namespace MicroBackend.Auth.Application.Services
 {
@@ -42,12 +43,19 @@ namespace MicroBackend.Auth.Application.Services
         public async Task<IServiceDataResult<ApplicationUsers>> ExternalLogin(LoginEmailDto loginEmail)
         {
             var user = await _userService.UserExists(loginEmail.Email);
-            if(user != null)
+            if (user != null)
             {
-                return new SuccessDataResult<ApplicationUsers>(user);
+                if (await _userService.IsEmailConfirmedAsync(user))
+                {
+                    return new SuccessDataResult<ApplicationUsers>(user);
+                }
+                else
+                {
+                    return new ErrorDataResult<ApplicationUsers>(user,GlobalErrors.EmailIsNotVerified, "User's email is not verified..!");
+                }
             }
 
-            return new ErrorDataResult<ApplicationUsers>(GlobalErrors.NotFound,"User does not exists..!");
+            return new ErrorDataResult<ApplicationUsers>(GlobalErrors.NotFound, "User does not exists..!");
         }
 
         public async Task<IServiceDataResult<ApplicationUsers>> LoginWithPassword(LoginEmailAndPasswordDto loginEmailAndPassword)
@@ -55,12 +63,20 @@ namespace MicroBackend.Auth.Application.Services
             var user = await _userService.UserExists(loginEmailAndPassword.Email).ConfigureAwait(true);
             if (user != null)
             {
-                var userToCheck = await _userService.CheckPasswordAsync(user, loginEmailAndPassword.Password);
-                if (!userToCheck)
+                if (await _userService.IsEmailConfirmedAsync(user))
                 {
-                    return new ErrorDataResult<ApplicationUsers>(GlobalErrors.NotFound, "User's password wrong..!"); ;
+                    var userToCheck = await _userService.CheckPasswordAsync(user, loginEmailAndPassword.Password);
+                    if (!userToCheck)
+                    {
+                        return new ErrorDataResult<ApplicationUsers>(GlobalErrors.NotFound, "User's password wrong..!");
+                    }
+                    return new SuccessDataResult<ApplicationUsers>(user);
                 }
-                return new SuccessDataResult<ApplicationUsers>(user);
+                else
+                {
+                    return new ErrorDataResult<ApplicationUsers>(user,GlobalErrors.EmailIsNotVerified, "User's email is not verified..!");
+                }
+
             }
 
             return new ErrorDataResult<ApplicationUsers>(GlobalErrors.NotFound, "User does not exists..!");
@@ -74,7 +90,7 @@ namespace MicroBackend.Auth.Application.Services
             if (result)
                 return new SuccessDataResult<ApplicationUsers>(user);
 
-            return new ErrorDataResult<ApplicationUsers>(GlobalErrors.NotCompleted,"User does not save to database..!");
+            return new ErrorDataResult<ApplicationUsers>(GlobalErrors.NotCompleted, "User does not save to database..!");
         }
 
     }

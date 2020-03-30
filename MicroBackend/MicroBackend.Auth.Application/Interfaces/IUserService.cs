@@ -17,5 +17,6 @@ namespace MicroBackend.Auth.Application.Interfaces
         Task<IServiceDataResult<bool>> AddRoleToUser(RoletoUserDto roletoUserDto);
         Task<bool> CheckPasswordAsync(ApplicationUsers applicationUser, string password);
         Task<bool> CreateAsync(ApplicationUsers applicationUser, string password);
+        Task<bool> IsEmailConfirmedAsync(ApplicationUsers applicationUser);
     }
 }
