@@ -22,6 +22,7 @@ using MicroBackend.Auth.JWT.Services.Jwt;
 using MicroBackend.Auth.Application.Interfaces;
 using MicroBackend.Auth.Application.Services;
 using MicroBackend.Auth.Data.Repository;
+using MicroBackend.Domain.Core.Extensions;
 
 namespace MicroBackend.Auth.Api
 {
@@ -69,6 +70,8 @@ namespace MicroBackend.Auth.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.ConfigureCustomExceptionMiddleware();
 
             app.UseRouting();
 

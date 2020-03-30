@@ -4,21 +4,21 @@ using Autofac.Extras.DynamicProxy;
 using Castle.DynamicProxy;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace MicroBackend.Domain.Core.Interceptors
 {
     public static class InterceptorModule
     {
-        public static void InterceptorModuleSelector(ContainerBuilder builder)
+        public static ContainerBuilder InterceptorModuleSelector(this ContainerBuilder builder,Assembly assembly)
         {
-            var assembly = System.Reflection.Assembly.GetExecutingAssembly();
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
                 .EnableInterfaceInterceptors(new ProxyGenerationOptions
                 {
                     Selector = new AspectInterceptorSelector()
                 }).SingleInstance();
-
+            return builder;
         }
     }
 }

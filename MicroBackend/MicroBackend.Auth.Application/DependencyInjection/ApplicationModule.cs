@@ -24,13 +24,9 @@ namespace MicroBackend.Auth.Application.DependencyInjection
 
             builder.RegisterType<UserRepository>();
             builder.RegisterType<RoleRepository>();
-            //builder.InterceptorModuleSelector();
+
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
-            builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()
-                .EnableInterfaceInterceptors(new ProxyGenerationOptions
-                {
-                    Selector = new AspectInterceptorSelector()
-                }).SingleInstance();
+            builder.InterceptorModuleSelector(assembly);
         }
     }
 }
