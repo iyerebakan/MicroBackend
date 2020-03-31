@@ -1,4 +1,5 @@
 ﻿using MicroBackend.Auth.Domain.Dtos;
+using MicroBackend.Auth.Domain.Dtos.UserDtos;
 using MicroBackend.Auth.Domain.Models;
 using MicroBackend.Domain.Core.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
@@ -19,7 +20,9 @@ namespace MicroBackend.Auth.Application.Interfaces
         Task<bool> CheckPasswordAsync(ApplicationUsers applicationUser, string password);
         Task<bool> CreateAsync(ApplicationUsers applicationUser, string password);
         Task<bool> IsEmailConfirmedAsync(ApplicationUsers applicationUser);
-        Task<IServiceDataResult<ApplicationUsers>> GenerateVerificationCode(ApplicationUsers applicationUser);
+        Task<IServiceDataResult<GenerateEmailDto>> GenerateEmailVerificationCode(ApplicationUsers applicationUser);
         Task<IServiceDataResult<ApplicationUsers>> EmailVerifiedAsync(ApplicationUsers applicationUser,string code);
+        Task<IServiceDataResult<GeneratePasswordDto>> GeneratePasswordVerificationCode(ApplicationUsers applicationUser);
+        Task<IServiceDataResult<ApplicationUsers>> ResetPasswordAsync(ApplicationUsers applicationUser, string token, string newPassword);
     }
 }

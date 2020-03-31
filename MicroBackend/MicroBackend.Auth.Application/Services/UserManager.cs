@@ -1,6 +1,7 @@
 ﻿using MicroBackend.Auth.Application.Interfaces;
 using MicroBackend.Auth.Data.Repository;
 using MicroBackend.Auth.Domain.Dtos;
+using MicroBackend.Auth.Domain.Dtos.UserDtos;
 using MicroBackend.Auth.Domain.Models;
 using MicroBackend.Domain.Core.Services.Constants;
 using MicroBackend.Domain.Core.Services.Interfaces;
@@ -91,13 +92,63 @@ namespace MicroBackend.Auth.Application.Services
             return await _userRepository.FindByEmailAsync(email);
         }
 
-        public async Task<IServiceDataResult<ApplicationUsers>> GenerateVerificationCode(ApplicationUsers applicationUser)
+        public async Task<IServiceDataResult<GenerateEmailDto>> GenerateEmailVerificationCode(ApplicationUsers applicationUser)
         {
             try
             {
                 string code = await _userRepository.GenerateEmailConfirmationTokenAsync(applicationUser);
-                return new SuccessDataResult<ApplicationUsers>(applicationUser, 
-                        message: WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code)));
+                return new SuccessDataResult<GenerateEmailDto>(new GenerateEmailDto
+                {
+                    VerificationToken = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code)),
+                    Id = applicationUser.Id,
+                    Email = applicationUser.Email
+                });
+            }
+            catch (Exception ex)
+            {
+                return new ErrorDataResult<GenerateEmailDto>(new GenerateEmailDto
+                {
+                    Email = applicationUser.Email,
+                    Id = applicationUser.Id
+                }, GlobalErrors.NotCompleted, message: ex.Message);
+            }
+        }
+
+        public async Task<IServiceDataResult<GeneratePasswordDto>> GeneratePasswordVerificationCode(ApplicationUsers applicationUser)
+        {
+            try
+            {
+                string code = await _userRepository.GeneratePasswordResetTokenAsync(applicationUser);
+                return new SuccessDataResult<GeneratePasswordDto>(new GeneratePasswordDto
+                {
+                    VerificationToken = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code)),
+                    Id = applicationUser.Id,
+                    Email = applicationUser.Email
+                }, message: "Password verification code has created..!");
+            }
+            catch (Exception ex)
+            {
+                return new ErrorDataResult<GeneratePasswordDto>(new GeneratePasswordDto
+                {
+                    Email = applicationUser.Email,
+                    Id = applicationUser.Id
+                }, GlobalErrors.NotCompleted, message: ex.Message);
+            }
+        }
+
+        public async Task<IServiceDataResult<ApplicationUsers>> ResetPasswordAsync(ApplicationUsers applicationUser, string token, string newPassword)
+        {
+            try
+            {
+                var result = await _userRepository.ResetPasswordAsync(applicationUser,
+                    Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(token)),
+                    newPassword);
+                if (result.Succeeded)
+                {
+                    return new SuccessDataResult<ApplicationUsers>(applicationUser);
+                }
+                return new ErrorDataResult<ApplicationUsers>(applicationUser, GlobalErrors.NotCompleted, 
+                            message: result.Errors.First().Description);
             }
             catch (Exception ex)
             {
