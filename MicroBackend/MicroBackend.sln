@@ -31,11 +31,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{3F32023E-23C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBackend.Auth.Domain", "MicroBackend.Auth.Domain\MicroBackend.Auth.Domain.csproj", "{02D02888-90F9-4913-8E2C-0DA8C5C5199C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBackend.Auth.JWT", "MicroBackend.Auth.JWT\MicroBackend.Auth.JWT.csproj", "{D7AF1165-23F9-429A-B624-79A13BEBC837}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBackend.Auth.JWT", "MicroBackend.Auth.JWT\MicroBackend.Auth.JWT.csproj", "{D7AF1165-23F9-429A-B624-79A13BEBC837}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBackend.Auth.Application", "MicroBackend.Auth.Application\MicroBackend.Auth.Application.csproj", "{50AFB9F3-5B00-4EC9-8325-EE4B4F893B4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBackend.Auth.Application", "MicroBackend.Auth.Application\MicroBackend.Auth.Application.csproj", "{50AFB9F3-5B00-4EC9-8325-EE4B4F893B4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBackend.Auth.Api", "MicroBackend.Auth.Api\MicroBackend.Auth.Api.csproj", "{DB759810-B54E-4BF3-A41E-E5DE98A119CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBackend.Auth.Api", "MicroBackend.Auth.Api\MicroBackend.Auth.Api.csproj", "{DB759810-B54E-4BF3-A41E-E5DE98A119CC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateway", "ApiGateway", "{BDC94E2D-3A92-44E9-A263-5A7D55ECEB09}"
 EndProject
