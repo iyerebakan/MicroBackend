@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using MicroBackend.Auth.Application.Interfaces;
 using MicroBackend.Auth.Domain.Dtos;
+using MicroBackend.Domain.Core.Security.Token;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,6 +32,8 @@ namespace MicroBackend.Auth.Api.Controllers
         }
 
         [HttpPost("login")]
+        [ProducesResponseType(typeof(AccessToken), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Login(LoginEmailAndPasswordDto loginEmailAndPasswordDto)
         {
             var userToLogin = await _authService.LoginWithPassword(loginEmailAndPasswordDto);
