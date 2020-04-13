@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 using MicroBackend.Domain.Core.Validation;
 using MicroBackend.Auth.Application.ValidationRules;
 using MicroBackend.Domain.Core.Services.Business;
+using MicroBackend.Domain.Core.Log.Services;
+using MicroBackend.Domain.Core.Log.Logger;
+using Castle.Core.Logging;
 
 namespace MicroBackend.Auth.Application.Services
 {
@@ -70,6 +73,7 @@ namespace MicroBackend.Auth.Application.Services
                     {
                         return new ErrorDataResult<ApplicationUsers>(GlobalErrors.NotFound, "User's password wrong..!");
                     }
+                    LoggerService.InfoAsync(new DatabaseLogger(message: "testdeneme", data: loginEmailAndPassword));
                     return new SuccessDataResult<ApplicationUsers>(user);
                 }
                 else

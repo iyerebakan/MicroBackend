@@ -1,4 +1,6 @@
 ﻿using FluentValidation;
+using MicroBackend.Domain.Core.Log.Logger;
+using MicroBackend.Domain.Core.Log.Services;
 using MicroBackend.Domain.Core.Services.Constants;
 using MicroBackend.Domain.Core.Services.Results;
 using Microsoft.AspNetCore.Http;
@@ -42,7 +44,7 @@ namespace MicroBackend.Domain.Core.Extensions
             {
                 code = GlobalErrors.NotValidation;
             }
-
+            LoggerService.ErrorAsync(new FileLogger(message: e.Message, data: null));
             return httpContext.Response.WriteAsync(JsonConvert.SerializeObject(
                     new ErrorDataResult<string>(
                         data: null,
