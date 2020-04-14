@@ -28,7 +28,7 @@ using Microsoft.OpenApi.Models;
 
 namespace MicroBackend.Auth.Api
 {
-    public class Startup
+    public class Startup 
     {
         public Startup(IConfiguration configuration)
         {
