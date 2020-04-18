@@ -9,4 +9,4 @@ namespace MicroBackend.Domain.Core.Log.Interfaces
     {
         Task WriteLog();
     }
-}
+} 
