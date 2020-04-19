@@ -47,6 +47,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Profile", "Profile", "{AABE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBackend.Auth.Data", "MicroBackend.Auth.Data\MicroBackend.Auth.Data.csproj", "{BBAC7987-FBBD-4E87-9387-A25428A4C0B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBackend.Gateway.Api", "MicroBackend.Gateway.Api\MicroBackend.Gateway.Api.csproj", "{7EAE2840-55D6-422D-887D-971685F8CFEB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{BBAC7987-FBBD-4E87-9387-A25428A4C0B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBAC7987-FBBD-4E87-9387-A25428A4C0B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBAC7987-FBBD-4E87-9387-A25428A4C0B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EAE2840-55D6-422D-887D-971685F8CFEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EAE2840-55D6-422D-887D-971685F8CFEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EAE2840-55D6-422D-887D-971685F8CFEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EAE2840-55D6-422D-887D-971685F8CFEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -100,6 +106,7 @@ Global
 		{637F0255-3065-4045-9805-79B2A7049099} = {A47575A7-7356-4E2F-9BAF-C07552A3B5CB}
 		{AABE579A-0853-4DBD-8CD2-F989A5CCC9FD} = {A47575A7-7356-4E2F-9BAF-C07552A3B5CB}
 		{BBAC7987-FBBD-4E87-9387-A25428A4C0B6} = {EBB1FC40-1B9F-4EF8-84B4-0FC0D2E25FAB}
+		{7EAE2840-55D6-422D-887D-971685F8CFEB} = {BDC94E2D-3A92-44E9-A263-5A7D55ECEB09}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {321CBC5F-1363-45AB-A890-0A2377AC562B}
