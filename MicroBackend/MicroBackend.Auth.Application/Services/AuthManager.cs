@@ -73,11 +73,12 @@ namespace MicroBackend.Auth.Application.Services
                     {
                         return new ErrorDataResult<ApplicationUsers>(GlobalErrors.NotFound, "User's password wrong..!");
                     }
-                    LoggerService.InfoAsync(new DatabaseLogger(message: "testdeneme", data: loginEmailAndPassword));
+                    LoggerService.InfoAsync(new DatabaseLogger(message: "User is logged in.", data: loginEmailAndPassword));
                     return new SuccessDataResult<ApplicationUsers>(user);
                 }
                 else
                 {
+                    LoggerService.WarnAsync(new DatabaseLogger(message: "User's email is not verified..!", data: user));
                     return new ErrorDataResult<ApplicationUsers>(user,GlobalErrors.EmailIsNotVerified, "User's email is not verified..!");
                 }
 
