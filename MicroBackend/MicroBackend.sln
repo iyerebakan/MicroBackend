@@ -49,6 +49,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBackend.Auth.Data", "M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBackend.Gateway.Api", "MicroBackend.Gateway.Api\MicroBackend.Gateway.Api.csproj", "{7EAE2840-55D6-422D-887D-971685F8CFEB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MicroBackend.Auth.Tests", "MicroBackend.Auth.Tests", "{4873ADE4-66E5-4701-ADF1-8B4734904CF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBackend.Auth.Api.Test", "MicroBackend.Auth.Api.Test\MicroBackend.Auth.Api.Test.csproj", "{ADF9418C-02F3-49C7-A64E-A094518D19F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBackend.Auth.Application.Test", "MicroBackend.Auth.Application.Test\MicroBackend.Auth.Application.Test.csproj", "{3AD1D79C-FC74-4727-AB00-694A0A360C99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBackend.Auth.Jwt.Test", "MicroBackend.Auth.Jwt.Test\MicroBackend.Auth.Jwt.Test.csproj", "{CB4410D0-1EF5-4252-8C43-46695FAF30EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +91,18 @@ Global
 		{7EAE2840-55D6-422D-887D-971685F8CFEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EAE2840-55D6-422D-887D-971685F8CFEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EAE2840-55D6-422D-887D-971685F8CFEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADF9418C-02F3-49C7-A64E-A094518D19F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADF9418C-02F3-49C7-A64E-A094518D19F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADF9418C-02F3-49C7-A64E-A094518D19F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADF9418C-02F3-49C7-A64E-A094518D19F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AD1D79C-FC74-4727-AB00-694A0A360C99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AD1D79C-FC74-4727-AB00-694A0A360C99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AD1D79C-FC74-4727-AB00-694A0A360C99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AD1D79C-FC74-4727-AB00-694A0A360C99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB4410D0-1EF5-4252-8C43-46695FAF30EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB4410D0-1EF5-4252-8C43-46695FAF30EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB4410D0-1EF5-4252-8C43-46695FAF30EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB4410D0-1EF5-4252-8C43-46695FAF30EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -107,6 +127,10 @@ Global
 		{AABE579A-0853-4DBD-8CD2-F989A5CCC9FD} = {A47575A7-7356-4E2F-9BAF-C07552A3B5CB}
 		{BBAC7987-FBBD-4E87-9387-A25428A4C0B6} = {EBB1FC40-1B9F-4EF8-84B4-0FC0D2E25FAB}
 		{7EAE2840-55D6-422D-887D-971685F8CFEB} = {BDC94E2D-3A92-44E9-A263-5A7D55ECEB09}
+		{4873ADE4-66E5-4701-ADF1-8B4734904CF8} = {3BF533FA-8C31-490D-9BB6-63CC820BA8FA}
+		{ADF9418C-02F3-49C7-A64E-A094518D19F0} = {4873ADE4-66E5-4701-ADF1-8B4734904CF8}
+		{3AD1D79C-FC74-4727-AB00-694A0A360C99} = {4873ADE4-66E5-4701-ADF1-8B4734904CF8}
+		{CB4410D0-1EF5-4252-8C43-46695FAF30EE} = {4873ADE4-66E5-4701-ADF1-8B4734904CF8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {321CBC5F-1363-45AB-A890-0A2377AC562B}
