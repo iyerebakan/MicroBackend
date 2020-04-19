@@ -1,8 +1,10 @@
 ﻿using MicroBackend.Domain.Core.Log.Interfaces;
 using MicroBackend.Domain.Core.Log.Models;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,6 +27,26 @@ namespace MicroBackend.Domain.Core.Log.Logger
             _message = message;
             _data = JsonConvert.SerializeObject(data);
         }
+
+
+        private static IConfigurationRoot _configuration;
+        public static IConfigurationRoot Configuration
+        {
+            get
+            {
+                if (_configuration == null)
+                {
+                    var configurationBuilder = new ConfigurationBuilder();
+                    string appsettingsPath = Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json");
+                    configurationBuilder.AddJsonFile(appsettingsPath, false);
+
+                    _configuration = configurationBuilder.Build();
+                }
+
+                return _configuration;
+            }
+        }
+
 
         public virtual void Error()
         {

@@ -22,11 +22,11 @@ namespace MicroBackend.Domain.Core.Log.Logger
 
         protected override void WriteLog(LogParameter logParameter)
         {
-            var path = @"C:\\temp\\Test.txt";
-            List<string> list=new List<string>();
+            var path = Configuration.GetSection("FileLogger").GetSection("FileLoggerPath").Value;
+            List<string> list = new List<string>();
             list.Add(JsonConvert.SerializeObject(logParameter));
 
-            File.WriteAllLinesAsync(path, list).ConfigureAwait(false);
+            File.AppendAllLinesAsync(path, list);
         }
     }
 }

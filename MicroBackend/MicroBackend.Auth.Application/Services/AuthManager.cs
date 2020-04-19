@@ -73,7 +73,7 @@ namespace MicroBackend.Auth.Application.Services
                     {
                         return new ErrorDataResult<ApplicationUsers>(GlobalErrors.NotFound, "User's password wrong..!");
                     }
-                    LoggerService.InfoAsync(new DatabaseLogger(message: "User is logged in.", data: loginEmailAndPassword));
+                    LoggerService.InfoAsync(new FileLogger(message: "User is logged in.", data: loginEmailAndPassword));
                     return new SuccessDataResult<ApplicationUsers>(user);
                 }
                 else

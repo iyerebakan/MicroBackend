@@ -13,25 +13,7 @@ using System.Threading.Tasks;
 namespace MicroBackend.Domain.Core.Log.Logger
 {
     public class DatabaseLogger : Logger
-    {
-        private static IConfigurationRoot _configuration;
-        public static IConfigurationRoot Configuration
-        {
-            get
-            {
-                if (_configuration == null)
-                {
-                    var configurationBuilder = new ConfigurationBuilder();
-                    string appsettingsPath = Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json");
-                    configurationBuilder.AddJsonFile(appsettingsPath, false);
-
-                    _configuration = configurationBuilder.Build();
-                }
-
-                return _configuration;
-            }
-        }
-
+    {        
         public DatabaseLogger(string message, object data) : base(message, data)
         {
         }
