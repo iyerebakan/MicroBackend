@@ -36,13 +36,18 @@ namespace MicroBackend.Auth.Api
         }
 
         public IConfiguration Configuration { get; }
+        private readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
        {
-            services.AddCors(c =>
+            services.AddCors(options =>
             {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyHeader());
+                options.AddPolicy(MyAllowSpecificOrigins,
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:7000").AllowAnyMethod().AllowAnyHeader();
+                });
             });
 
             services.AddDbContext<MicroBackendAuthContext>(options =>
@@ -94,7 +99,8 @@ namespace MicroBackend.Auth.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader());
+            app.UseCors(MyAllowSpecificOrigins);
+
             app.ConfigureCustomExceptionMiddleware();
 
             app.UseRouting();
