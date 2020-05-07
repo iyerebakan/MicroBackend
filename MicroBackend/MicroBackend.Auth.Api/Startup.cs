@@ -53,7 +53,7 @@ namespace MicroBackend.Auth.Api
             services.AddDbContext<MicroBackendAuthContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("MicroBackendAuthConnection"));
-            });
+            });     
 
             services.AddIdentity<ApplicationUsers, ApplicationRoles>(opt => {
                 opt.SignIn.RequireConfirmedEmail = true;
