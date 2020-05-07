@@ -32,7 +32,7 @@ namespace MicroBackend.Auth.Api.Controllers
         }
 
         [HttpPost("login")]
-        [ProducesResponseType(typeof(AccessToken), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(AccessToken), (int)HttpStatusCode.OK)] 
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
         public async Task<IActionResult> Login(LoginEmailAndPasswordDto loginEmailAndPasswordDto)
         {
