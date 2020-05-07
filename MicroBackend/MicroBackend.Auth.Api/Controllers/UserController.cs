@@ -23,7 +23,7 @@ namespace MicroBackend.Auth.Api.Controllers
         public async Task<IActionResult> VerifiedUserEmail(string email,string code)
         {
             var user = _userService.FindUserByEmail(email);
-            if (user == null)
+            if (user == null)  
                 return BadRequest();
 
             return Ok(await _userService.EmailVerifiedAsync(user.Result,code));
