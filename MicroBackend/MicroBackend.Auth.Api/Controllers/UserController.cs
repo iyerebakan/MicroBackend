@@ -26,7 +26,7 @@ namespace MicroBackend.Auth.Api.Controllers
             if (user == null)  
                 return BadRequest();
 
-            return Ok(await _userService.EmailVerifiedAsync(user.Result,code));
+            return Ok(await _userService.EmailVerifiedAsync(user.Result,code));   
         }
         
         [HttpPost("generateVerificationCode")]
