@@ -9,6 +9,14 @@ pipeline {
                 echo 'Build Ends'
             }
         }
+	    
+	stage('Test') {
+            steps {
+                echo 'Test Starts!'
+                bat "\"C:/Program Files/dotnet/dotnet.exe\" test \"C:/Projects/MicroBackend/MicroBackend/MicroBackend.Auth.Jwt.Test\""
+                echo 'Test Ends'
+            }
+        }
 		
 	stage('Identity Deploy') {
             steps {
