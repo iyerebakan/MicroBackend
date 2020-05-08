@@ -9,3 +9,4 @@ namespace MicroBackend.Auth.Domain.Interfaces
         public string Email { get; set; }
     }
 }
+  
