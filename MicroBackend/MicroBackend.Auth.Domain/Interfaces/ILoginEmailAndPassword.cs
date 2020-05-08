@@ -9,4 +9,4 @@ namespace MicroBackend.Auth.Domain.Interfaces
         public string Password { get; set; }
     }
 }
-   
+    
