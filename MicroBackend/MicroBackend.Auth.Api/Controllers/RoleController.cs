@@ -26,4 +26,4 @@ namespace MicroBackend.Auth.Api.Controllers
             return Ok(result);
         }
     }
-}
+} 
