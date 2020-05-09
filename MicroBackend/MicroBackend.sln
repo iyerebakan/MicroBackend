@@ -39,7 +39,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBackend.Auth.Api", "Mi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiGateway", "ApiGateway", "{BDC94E2D-3A92-44E9-A263-5A7D55ECEB09}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task", "Task", "{D72D5D11-1E7C-46FA-A343-5836732FC6FD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Operation", "Operation", "{D72D5D11-1E7C-46FA-A343-5836732FC6FD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Notificatiion", "Notificatiion", "{637F0255-3065-4045-9805-79B2A7049099}"
 EndProject
@@ -47,15 +47,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Profile", "Profile", "{AABE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBackend.Auth.Data", "MicroBackend.Auth.Data\MicroBackend.Auth.Data.csproj", "{BBAC7987-FBBD-4E87-9387-A25428A4C0B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBackend.Gateway.Api", "MicroBackend.Gateway.Api\MicroBackend.Gateway.Api.csproj", "{7EAE2840-55D6-422D-887D-971685F8CFEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBackend.Gateway.Api", "MicroBackend.Gateway.Api\MicroBackend.Gateway.Api.csproj", "{7EAE2840-55D6-422D-887D-971685F8CFEB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MicroBackend.Auth.Tests", "MicroBackend.Auth.Tests", "{4873ADE4-66E5-4701-ADF1-8B4734904CF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBackend.Auth.Api.Test", "MicroBackend.Auth.Api.Test\MicroBackend.Auth.Api.Test.csproj", "{ADF9418C-02F3-49C7-A64E-A094518D19F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBackend.Auth.Api.Test", "MicroBackend.Auth.Api.Test\MicroBackend.Auth.Api.Test.csproj", "{ADF9418C-02F3-49C7-A64E-A094518D19F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBackend.Auth.Application.Test", "MicroBackend.Auth.Application.Test\MicroBackend.Auth.Application.Test.csproj", "{3AD1D79C-FC74-4727-AB00-694A0A360C99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBackend.Auth.Application.Test", "MicroBackend.Auth.Application.Test\MicroBackend.Auth.Application.Test.csproj", "{3AD1D79C-FC74-4727-AB00-694A0A360C99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBackend.Auth.Jwt.Test", "MicroBackend.Auth.Jwt.Test\MicroBackend.Auth.Jwt.Test.csproj", "{CB4410D0-1EF5-4252-8C43-46695FAF30EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBackend.Auth.Jwt.Test", "MicroBackend.Auth.Jwt.Test\MicroBackend.Auth.Jwt.Test.csproj", "{CB4410D0-1EF5-4252-8C43-46695FAF30EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{6B53438E-4D78-4DEF-A58A-363D7A80FDA8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{078DA4C9-9958-48B2-A01E-6749980F6E2F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{44D558AA-1010-4373-8926-756A92AB2FDA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{636C464B-14C4-4524-8AB7-B1AF7504D340}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBackend.Operation.Domain", "MicroBackend.Operation.Domain\MicroBackend.Operation.Domain.csproj", "{B32D1E53-183C-4AF4-8E78-F150F34214C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,6 +113,10 @@ Global
 		{CB4410D0-1EF5-4252-8C43-46695FAF30EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB4410D0-1EF5-4252-8C43-46695FAF30EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB4410D0-1EF5-4252-8C43-46695FAF30EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B32D1E53-183C-4AF4-8E78-F150F34214C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B32D1E53-183C-4AF4-8E78-F150F34214C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B32D1E53-183C-4AF4-8E78-F150F34214C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B32D1E53-183C-4AF4-8E78-F150F34214C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -131,6 +145,11 @@ Global
 		{ADF9418C-02F3-49C7-A64E-A094518D19F0} = {4873ADE4-66E5-4701-ADF1-8B4734904CF8}
 		{3AD1D79C-FC74-4727-AB00-694A0A360C99} = {4873ADE4-66E5-4701-ADF1-8B4734904CF8}
 		{CB4410D0-1EF5-4252-8C43-46695FAF30EE} = {4873ADE4-66E5-4701-ADF1-8B4734904CF8}
+		{6B53438E-4D78-4DEF-A58A-363D7A80FDA8} = {D72D5D11-1E7C-46FA-A343-5836732FC6FD}
+		{078DA4C9-9958-48B2-A01E-6749980F6E2F} = {D72D5D11-1E7C-46FA-A343-5836732FC6FD}
+		{44D558AA-1010-4373-8926-756A92AB2FDA} = {D72D5D11-1E7C-46FA-A343-5836732FC6FD}
+		{636C464B-14C4-4524-8AB7-B1AF7504D340} = {D72D5D11-1E7C-46FA-A343-5836732FC6FD}
+		{B32D1E53-183C-4AF4-8E78-F150F34214C4} = {636C464B-14C4-4524-8AB7-B1AF7504D340}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {321CBC5F-1363-45AB-A890-0A2377AC562B}
