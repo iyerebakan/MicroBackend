@@ -3,12 +3,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MicroBackend.Auth.Data.Migrations
 {
-    public partial class UserMigrations : Migration
+    public partial class AuthMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "Auth");
+
             migrationBuilder.CreateTable(
                 name: "Roles",
+                schema: "Auth",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
@@ -23,6 +27,7 @@ namespace MicroBackend.Auth.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Users",
+                schema: "Auth",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
@@ -48,6 +53,7 @@ namespace MicroBackend.Auth.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "RoleClaims",
+                schema: "Auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -62,6 +68,7 @@ namespace MicroBackend.Auth.Data.Migrations
                     table.ForeignKey(
                         name: "FK_RoleClaims_Roles_RoleId",
                         column: x => x.RoleId,
+                        principalSchema: "Auth",
                         principalTable: "Roles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -69,6 +76,7 @@ namespace MicroBackend.Auth.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "UserClaims",
+                schema: "Auth",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -83,6 +91,7 @@ namespace MicroBackend.Auth.Data.Migrations
                     table.ForeignKey(
                         name: "FK_UserClaims_Users_UserId",
                         column: x => x.UserId,
+                        principalSchema: "Auth",
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -90,6 +99,7 @@ namespace MicroBackend.Auth.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "UserLogins",
+                schema: "Auth",
                 columns: table => new
                 {
                     LoginProvider = table.Column<string>(nullable: false),
@@ -103,6 +113,7 @@ namespace MicroBackend.Auth.Data.Migrations
                     table.ForeignKey(
                         name: "FK_UserLogins_Users_UserId",
                         column: x => x.UserId,
+                        principalSchema: "Auth",
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -110,6 +121,7 @@ namespace MicroBackend.Auth.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "UserRoles",
+                schema: "Auth",
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
@@ -121,12 +133,14 @@ namespace MicroBackend.Auth.Data.Migrations
                     table.ForeignKey(
                         name: "FK_UserRoles_Roles_RoleId",
                         column: x => x.RoleId,
+                        principalSchema: "Auth",
                         principalTable: "Roles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_UserRoles_Users_UserId",
                         column: x => x.UserId,
+                        principalSchema: "Auth",
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -134,6 +148,7 @@ namespace MicroBackend.Auth.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "UserTokens",
+                schema: "Auth",
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
@@ -147,6 +162,7 @@ namespace MicroBackend.Auth.Data.Migrations
                     table.ForeignKey(
                         name: "FK_UserTokens_Users_UserId",
                         column: x => x.UserId,
+                        principalSchema: "Auth",
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -154,11 +170,13 @@ namespace MicroBackend.Auth.Data.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_RoleClaims_RoleId",
+                schema: "Auth",
                 table: "RoleClaims",
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
+                schema: "Auth",
                 table: "Roles",
                 column: "NormalizedName",
                 unique: true,
@@ -166,26 +184,31 @@ namespace MicroBackend.Auth.Data.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserClaims_UserId",
+                schema: "Auth",
                 table: "UserClaims",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserLogins_UserId",
+                schema: "Auth",
                 table: "UserLogins",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserRoles_RoleId",
+                schema: "Auth",
                 table: "UserRoles",
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
+                schema: "Auth",
                 table: "Users",
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
+                schema: "Auth",
                 table: "Users",
                 column: "NormalizedUserName",
                 unique: true,
@@ -195,25 +218,32 @@ namespace MicroBackend.Auth.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "RoleClaims");
+                name: "RoleClaims",
+                schema: "Auth");
 
             migrationBuilder.DropTable(
-                name: "UserClaims");
+                name: "UserClaims",
+                schema: "Auth");
 
             migrationBuilder.DropTable(
-                name: "UserLogins");
+                name: "UserLogins",
+                schema: "Auth");
 
             migrationBuilder.DropTable(
-                name: "UserRoles");
+                name: "UserRoles",
+                schema: "Auth");
 
             migrationBuilder.DropTable(
-                name: "UserTokens");
+                name: "UserTokens",
+                schema: "Auth");
 
             migrationBuilder.DropTable(
-                name: "Roles");
+                name: "Roles",
+                schema: "Auth");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Users",
+                schema: "Auth");
         }
     }
 }

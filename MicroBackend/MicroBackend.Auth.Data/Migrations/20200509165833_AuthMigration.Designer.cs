@@ -10,13 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MicroBackend.Auth.Data.Migrations
 {
     [DbContext(typeof(MicroBackendAuthContext))]
-    [Migration("20200331084152_UserMigrations")]
-    partial class UserMigrations
+    [Migration("20200509165833_AuthMigration")]
+    partial class AuthMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("Auth")
                 .HasAnnotation("ProductVersion", "3.1.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);

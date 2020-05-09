@@ -5,6 +5,7 @@ using System.Text;
 
 namespace MicroBackend.Auth.Domain.Models
 {
+    
     public class ApplicationRoles : IdentityRole
     {
     }

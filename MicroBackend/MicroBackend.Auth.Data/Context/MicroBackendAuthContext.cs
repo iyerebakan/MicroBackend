@@ -17,6 +17,7 @@ namespace MicroBackend.Auth.Data.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.HasDefaultSchema("Auth");
             base.OnModelCreating(builder);
             builder.Entity<ApplicationUsers>(entity => { entity.ToTable(name: "Users"); });
             builder.Entity<ApplicationRoles>(entity => { entity.ToTable(name: "Roles"); });
