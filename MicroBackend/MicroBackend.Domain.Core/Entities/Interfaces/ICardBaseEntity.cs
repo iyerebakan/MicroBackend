@@ -4,11 +4,11 @@ using System.Text;
 
 namespace MicroBackend.Domain.Core.Entities.Interfaces
 {
-    public interface ICardBaseEntity<TKey> : IBaseEntity<TKey>
+    public interface ICardBaseEntity<TKey> : IBaseEntity<TKey> where TKey : struct
     {
-        int? UpdateUser { get; set; }
+        Nullable<TKey> UpdateUser { get; set; }
 
-        int? CreateUser { get; set; }
+        Nullable<TKey> CreateUser { get; set; }
 
         DateTime? CreateDate { get; set; }
 

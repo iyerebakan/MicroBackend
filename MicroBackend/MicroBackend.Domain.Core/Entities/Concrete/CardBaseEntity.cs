@@ -8,19 +8,19 @@ using System.Text;
 
 namespace MicroBackend.Domain.Core.Entities.Concrete
 {
-    public abstract class CardBaseEntity<TKey> : BaseEntity<TKey>, ICardBaseEntity<TKey>
+    public abstract class CardBaseEntity<TKey> : BaseEntity<TKey>, ICardBaseEntity<TKey> where TKey : struct
     {
         [MaxLength(128)]
-        public int? UpdateUser { get; set; }
+        public Nullable<TKey> UpdateUser { get; set; }
 
         [MaxLength(128)]
-        public int? CreateUser { get; set; }
+        public Nullable<TKey> CreateUser { get; set; }
 
         public DateTime? CreateDate { get; set; }
 
         public DateTime? UpdateDate { get; set; }
 
-        public CardBaseEntity(bool create, int? userId)
+        public CardBaseEntity(bool create, TKey? userId)
             : base(create)
         {
             if (create)
