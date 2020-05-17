@@ -1,14 +1,15 @@
-﻿using MicroBackend.Auth.Domain.Dtos;
-using MicroBackend.Auth.Domain.Dtos.UserDtos;
-using MicroBackend.Auth.Domain.Models;
+﻿
 using MicroBackend.Domain.Core.Services.Interfaces;
+using MicroBackend.User.Domain.Dtos;
+using MicroBackend.User.Domain.Dtos.UserDtos;
+using MicroBackend.User.Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MicroBackend.Auth.Application.Interfaces
+namespace MicroBackend.User.Application.Interfaces
 {
     public interface IUserService
     {

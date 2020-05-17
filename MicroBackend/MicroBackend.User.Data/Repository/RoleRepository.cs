@@ -1,11 +1,11 @@
-﻿using MicroBackend.Auth.Domain.Models;
+﻿using MicroBackend.User.Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MicroBackend.Auth.Data.Repository
+namespace MicroBackend.User.Data.Repository
 {
     public class RoleRepository : RoleManager<ApplicationRoles>
     {

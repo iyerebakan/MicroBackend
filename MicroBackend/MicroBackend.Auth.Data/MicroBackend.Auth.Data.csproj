@@ -13,5 +13,10 @@
   <ItemGroup>
     <ProjectReference Include="..\MicroBackend.Auth.Domain\MicroBackend.Auth.Domain.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Context\" />
+    <Folder Include="Migrations\" />
+    <Folder Include="Repository\" />
+  </ItemGroup>
 
 </Project>

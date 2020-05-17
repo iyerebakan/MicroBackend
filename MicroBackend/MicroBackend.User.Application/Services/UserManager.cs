@@ -1,11 +1,11 @@
-﻿using MicroBackend.Auth.Application.Interfaces;
-using MicroBackend.Auth.Data.Repository;
-using MicroBackend.Auth.Domain.Dtos;
-using MicroBackend.Auth.Domain.Dtos.UserDtos;
-using MicroBackend.Auth.Domain.Models;
-using MicroBackend.Domain.Core.Services.Constants;
+﻿using MicroBackend.Domain.Core.Services.Constants;
 using MicroBackend.Domain.Core.Services.Interfaces;
 using MicroBackend.Domain.Core.Services.Results;
+using MicroBackend.User.Application.Interfaces;
+using MicroBackend.User.Data.Repository;
+using MicroBackend.User.Domain.Dtos;
+using MicroBackend.User.Domain.Dtos.UserDtos;
+using MicroBackend.User.Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
 using System;
@@ -15,7 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace MicroBackend.Auth.Application.Services
+namespace MicroBackend.User.Application.Services
 {
     public class UserManager : IUserService
     {

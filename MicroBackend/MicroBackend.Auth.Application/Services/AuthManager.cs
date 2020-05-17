@@ -1,5 +1,4 @@
 ﻿using MicroBackend.Auth.Application.Interfaces;
-using MicroBackend.Auth.Data.Repository;
 using MicroBackend.Auth.Domain.Dtos;
 using MicroBackend.Auth.Domain.Models;
 using MicroBackend.Domain.Core.Services.Constants;
@@ -16,27 +15,28 @@ using MicroBackend.Domain.Core.Services.Business;
 using MicroBackend.Domain.Core.Log.Services;
 using MicroBackend.Domain.Core.Log.Logger;
 using Castle.Core.Logging;
+using MicroBackend.Domain.Core.RestClient;
+using MicroBackend.Auth.Application.Constants;
+using System.Runtime.InteropServices;
 
 namespace MicroBackend.Auth.Application.Services
 {
     public class AuthManager : IAuthService
     {
-        private readonly IUserService _userService;
         private readonly ITokenHelper _tokenHelper;
-        public AuthManager(IUserService userService, ITokenHelper tokenHelper)
+        public AuthManager(ITokenHelper tokenHelper)
         {
-            _userService = userService;
             _tokenHelper = tokenHelper;
         }
 
         public async Task<IServiceDataResult<AccessToken>> CreateToken(ApplicationUsers applicationUser)
         {
-            var roles = await _userService.GetRolesAsync(applicationUser);
+            var roles = await new RestClient<ApplicationUsers, List<string>>(UserAPI.GETUSERROLES).PostAsync(applicationUser);
 
             var tokenInfo = new TokenInfo
             {
                 Email = applicationUser.Email,
-                Roles = roles.ToArray(),
+                Roles =  roles != null ?  roles.ToArray() : new string[] { },
                 Id = applicationUser.Id,
                 UserName = applicationUser.UserName
             };
@@ -45,16 +45,16 @@ namespace MicroBackend.Auth.Application.Services
 
         public async Task<IServiceDataResult<ApplicationUsers>> ExternalLogin(LoginEmailDto loginEmail)
         {
-            var user = await _userService.UserExists(loginEmail.Email);
+            var user = await new RestClient<ApplicationUsers, ApplicationUsers>($"{ UserAPI.USEREXISTS}?email={loginEmail.Email}").GetAsync();
             if (user != null)
             {
-                if (await _userService.IsEmailConfirmedAsync(user))
+                if (await new RestClient<ApplicationUsers, bool>(UserAPI.EMAILCONFIRMED).PostAsync(user))
                 {
                     return new SuccessDataResult<ApplicationUsers>(user);
                 }
                 else
                 {
-                    return new ErrorDataResult<ApplicationUsers>(user,GlobalErrors.EmailIsNotVerified, "User's email is not verified..!");
+                    return new ErrorDataResult<ApplicationUsers>(user, GlobalErrors.EmailIsNotVerified, "User's email is not verified..!");
                 }
             }
 
@@ -63,12 +63,15 @@ namespace MicroBackend.Auth.Application.Services
 
         public async Task<IServiceDataResult<ApplicationUsers>> LoginWithPassword(LoginEmailAndPasswordDto loginEmailAndPassword)
         {
-            var user = await _userService.UserExists(loginEmailAndPassword.Email).ConfigureAwait(true);
+            var user = await new RestClient<ApplicationUsers, ApplicationUsers>($"{ UserAPI.USEREXISTS}?email={loginEmailAndPassword.Email}").GetAsync();
             if (user != null)
             {
-                if (await _userService.IsEmailConfirmedAsync(user))
+                if (user.EmailConfirmed)
                 {
-                    var userToCheck = await _userService.CheckPasswordAsync(user, loginEmailAndPassword.Password);
+                    var userToCheck = await new RestClient<ApplicationUsers, bool>
+                            ($"{UserAPI.CHECKPASSWORD}?password={loginEmailAndPassword.Password}")
+                            .PostAsync(user);
+
                     if (!userToCheck)
                     {
                         return new ErrorDataResult<ApplicationUsers>(GlobalErrors.NotFound, "User's password wrong..!");
@@ -79,7 +82,7 @@ namespace MicroBackend.Auth.Application.Services
                 else
                 {
                     LoggerService.WarnAsync(new DatabaseLogger(message: "User's email is not verified..!", data: user));
-                    return new ErrorDataResult<ApplicationUsers>(user,GlobalErrors.EmailIsNotVerified, "User's email is not verified..!");
+                    return new ErrorDataResult<ApplicationUsers>(user, GlobalErrors.EmailIsNotVerified, "User's email is not verified..!");
                 }
 
             }
@@ -90,14 +93,15 @@ namespace MicroBackend.Auth.Application.Services
         [ValidationAspect(typeof(RegisterValidator))]
         public async Task<IServiceDataResult<ApplicationUsers>> Register(RegisterDto register)
         {
-            var user = await _userService.UserExists(register.Email);
+            var user = await new RestClient<ApplicationUsers, ApplicationUsers>($"{ UserAPI.USEREXISTS}?email={register.Email}").GetAsync();
             if (user != null)
             {
                 return new ErrorDataResult<ApplicationUsers>(user, GlobalErrors.NotCompleted, "User is already registered..!");
             }
 
             user = new ApplicationUsers { UserName = register.UserName, Email = register.Email };
-            var result = await _userService.CreateAsync(user, register.Password);
+            var result = await new RestClient<ApplicationUsers, bool>($"{ UserAPI.CREATEUSER}?password={register.Password}")
+                        .PostAsync(user);
             if (result)
                 return new SuccessDataResult<ApplicationUsers>(user);
 

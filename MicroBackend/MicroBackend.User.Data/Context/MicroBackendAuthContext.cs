@@ -1,4 +1,4 @@
-﻿using MicroBackend.Auth.Domain.Models;
+﻿using MicroBackend.User.Domain.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MicroBackend.Auth.Data.Context
+namespace MicroBackend.User.Data.Context
 {
     public class MicroBackendAuthContext : IdentityDbContext<ApplicationUsers,ApplicationRoles,string>
     {

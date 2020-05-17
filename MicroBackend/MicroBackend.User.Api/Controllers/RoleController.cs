@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MicroBackend.Auth.Application.Interfaces;
-using MicroBackend.Auth.Domain.Dtos;
+using MicroBackend.User.Application.Interfaces;
+using MicroBackend.User.Domain.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

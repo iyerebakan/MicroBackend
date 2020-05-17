@@ -4,11 +4,23 @@
       "DownstreamPathTemplate": "/api/{everything}",
       "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/api/auth-service/{everything}",
-      "UpstreamHttpMethod": [ "GET","POST","PUT" ],
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 5001
+        }
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/api/user-service/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT" ],
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
         }
       ]
     }

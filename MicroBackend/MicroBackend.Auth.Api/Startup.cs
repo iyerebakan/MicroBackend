@@ -1,34 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MicroBackend.Auth.JWT.Models;
-using MicroBackend.Auth.Data.Context;
-using MicroBackend.Auth.Domain.Models;
+using MicroBackend.Auth.JWT.Services.Encryption;
+using MicroBackend.Domain.Core.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using MicroBackend.Auth.JWT.Services.Encryption;
-using MicroBackend.Domain.Core.Security.Token;
-using MicroBackend.Auth.JWT.Services.Jwt;
-using MicroBackend.Auth.Application.Interfaces;
-using MicroBackend.Auth.Application.Services;
-using MicroBackend.Auth.Data.Repository;
-using MicroBackend.Domain.Core.Extensions;
-using MicroBackend.Auth.Application.Providers;
 using Microsoft.OpenApi.Models;
 
 namespace MicroBackend.Auth.Api
 {
-    public class Startup 
+    public class Startup
     {
         public Startup(IConfiguration configuration)
         {
@@ -40,7 +24,7 @@ namespace MicroBackend.Auth.Api
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-       {
+        {
             services.AddCors(options =>
             {
                 options.AddPolicy(MyAllowSpecificOrigins,
@@ -50,23 +34,6 @@ namespace MicroBackend.Auth.Api
                 });
             });
 
-            services.AddDbContext<MicroBackendAuthContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("MicroBackendAuthConnection"));
-            });     
-
-            services.AddIdentity<ApplicationUsers, ApplicationRoles>(opt => {
-                opt.SignIn.RequireConfirmedEmail = true;
-                opt.Tokens.EmailConfirmationTokenProvider = "emailconfirmation";
-            })
-            .AddEntityFrameworkStores<MicroBackendAuthContext>()
-            .AddDefaultTokenProviders()
-            .AddTokenProvider<EmailConfirmationTokenProvider<ApplicationUsers>>("emailconfirmation");
-
-            services.Configure<DataProtectionTokenProviderOptions>(opt => opt.TokenLifespan = TimeSpan.FromHours(2));
-
-            services.Configure<EmailConfirmationTokenProviderOptions>(opt =>
-                opt.TokenLifespan = TimeSpan.FromDays(3));
 
             services.AddControllers();
 

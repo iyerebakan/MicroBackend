@@ -1,12 +1,12 @@
-﻿using MicroBackend.Auth.Application.Interfaces;
-using MicroBackend.Auth.Data.Repository;
-using MicroBackend.Auth.Domain.Models;
+﻿using MicroBackend.User.Application.Interfaces;
+using MicroBackend.User.Data.Repository;
+using MicroBackend.User.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MicroBackend.Auth.Application.Services
+namespace MicroBackend.User.Application.Services
 {
     public class RoleManager : IRoleService
     {

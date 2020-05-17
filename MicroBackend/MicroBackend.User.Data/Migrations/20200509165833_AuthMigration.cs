@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace MicroBackend.Auth.Data.Migrations
+namespace MicroBackend.User.Data.Migrations
 {
     public partial class AuthMigration : Migration
     {

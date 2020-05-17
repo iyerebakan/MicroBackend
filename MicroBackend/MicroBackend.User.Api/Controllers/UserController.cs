@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Odbc;
 using System.Linq;
 using System.Threading.Tasks;
-using MicroBackend.Auth.Application.Interfaces;
-using MicroBackend.Auth.Domain.Dtos;
-using MicroBackend.Auth.Domain.Dtos.UserDtos;
+using MicroBackend.User.Application.Interfaces;
+using MicroBackend.User.Domain.Dtos;
+using MicroBackend.User.Domain.Dtos.UserDtos;
+using MicroBackend.User.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MicroBackend.Auth.Api.Controllers
+namespace MicroBackend.User.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -63,6 +65,36 @@ namespace MicroBackend.Auth.Api.Controllers
                 return BadRequest();
 
             return Ok(await _userService.ResetPasswordAsync(user.Result, changePassword.VerificationToken,changePassword.NewPassword));
+        }
+
+        [HttpGet("getUserRoles")]
+        public async Task<IActionResult> GetRolesAsync(ApplicationUsers applicationUsers)
+        {
+            return Ok(await _userService.GetRolesAsync(applicationUsers));
+        }
+
+        [HttpGet("userExists")]
+        public async Task<IActionResult> UserExists(string email)
+        {
+            return Ok(await _userService.UserExists(email));
+        }
+
+        [HttpPost("isEmailConfirmed")]
+        public async Task<IActionResult> IsEmailConfirmedAsync(ApplicationUsers applicationUsers)
+        {
+            return Ok(await _userService.IsEmailConfirmedAsync(applicationUsers));
+        }
+
+        [HttpPost("checkPassword")]
+        public async Task<IActionResult> CheckPasswordAsync(ApplicationUsers applicationUsers,string password)
+        {
+            return Ok(await _userService.CheckPasswordAsync(applicationUsers, password));
+        }
+
+        [HttpPost("createUser")]
+        public async Task<IActionResult> CreateAsync(ApplicationUsers applicationUsers, string password)
+        {
+            return Ok(await _userService.CreateAsync(applicationUsers, password));
         }
 
     }
