@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MicroBackend.User.Application.Interfaces;
 using MicroBackend.User.Domain.Dtos;
+using MicroBackend.User.Domain.Dtos.AuthDtos;
 using MicroBackend.User.Domain.Dtos.UserDtos;
 using MicroBackend.User.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -86,15 +87,16 @@ namespace MicroBackend.User.Api.Controllers
         }
 
         [HttpPost("checkPassword")]
-        public async Task<IActionResult> CheckPasswordAsync(ApplicationUsers applicationUsers,string password)
+        public async Task<IActionResult> CheckPasswordAsync(CheckPasswordDto checkPasswordDto)
         {
-            return Ok(await _userService.CheckPasswordAsync(applicationUsers, password));
+            return Ok(await _userService.CheckPasswordAsync(checkPasswordDto.ApplicationUsers, checkPasswordDto.Password));
         }
 
         [HttpPost("createUser")]
-        public async Task<IActionResult> CreateAsync(ApplicationUsers applicationUsers, string password)
+        public async Task<IActionResult> CreateAsync(RegisterDto register)
         {
-            return Ok(await _userService.CreateAsync(applicationUsers, password));
+            var user = new ApplicationUsers { UserName = register.UserName, Email = register.Email };
+            return Ok(await _userService.CreateAsync(user, register.Password));
         }
 
     }

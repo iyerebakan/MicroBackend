@@ -18,6 +18,7 @@ using Castle.Core.Logging;
 using MicroBackend.Domain.Core.RestClient;
 using MicroBackend.Auth.Application.Constants;
 using System.Runtime.InteropServices;
+using MicroBackend.Auth.Domain.Dtos.AuthDtos;
 
 namespace MicroBackend.Auth.Application.Services
 {
@@ -68,9 +69,8 @@ namespace MicroBackend.Auth.Application.Services
             {
                 if (user.EmailConfirmed)
                 {
-                    var userToCheck = await new RestClient<ApplicationUsers, bool>
-                            ($"{UserAPI.CHECKPASSWORD}?password={loginEmailAndPassword.Password}")
-                            .PostAsync(user);
+                    var userToCheck = await new RestClient<CheckPasswordDto, bool>($"{UserAPI.CHECKPASSWORD}")
+                        .PostAsync(new CheckPasswordDto { ApplicationUsers = user, Password = loginEmailAndPassword.Password });
 
                     if (!userToCheck)
                     {
@@ -99,9 +99,8 @@ namespace MicroBackend.Auth.Application.Services
                 return new ErrorDataResult<ApplicationUsers>(user, GlobalErrors.NotCompleted, "User is already registered..!");
             }
 
-            user = new ApplicationUsers { UserName = register.UserName, Email = register.Email };
-            var result = await new RestClient<ApplicationUsers, bool>($"{ UserAPI.CREATEUSER}?password={register.Password}")
-                        .PostAsync(user);
+            //user = new ApplicationUsers { UserName = register.UserName, Email = register.Email };
+            var result = await new RestClient<RegisterDto, bool>($"{ UserAPI.CREATEUSER}").PostAsync(register);
             if (result)
                 return new SuccessDataResult<ApplicationUsers>(user);
 
