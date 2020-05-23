@@ -20,6 +20,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBackend.Domain.Core", "MicroBackend.Domain.Core\MicroBackend.Domain.Core.csproj", "{AC54514E-EA9E-4B8E-A16E-072021C256B8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AuthServer", "AuthServer", "{1EC19AEF-A6C2-44A0-BA89-9A4915B508E1}"
+	ProjectSection(SolutionItems) = preProject
+		MicroBackend.Gateway.Api\Startup.cs = MicroBackend.Gateway.Api\Startup.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{50CE5266-CC5D-48DA-A963-C9CE76F46CC7}"
 EndProject

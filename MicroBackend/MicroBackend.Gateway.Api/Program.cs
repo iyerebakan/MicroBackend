@@ -30,7 +30,7 @@ namespace MicroBackend.Gateway.Api
                     .AddJsonFile("ocelot.json", false, false)
                     .AddEnvironmentVariables();
             })
-            .UseUrls("http://localhost:7000").UseIIS()
+            .UseUrls("http://localhost:5000").UseIIS()
             .UseStartup<Startup>().Build();
     }
 }

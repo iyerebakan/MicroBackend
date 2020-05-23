@@ -39,7 +39,7 @@ namespace MicroBackend.User.Api
                 options.AddPolicy(MyAllowSpecificOrigins,
                 builder =>
                 {
-                    builder.WithOrigins("http://localhost:7000").AllowAnyMethod().AllowAnyHeader();
+                    builder.WithOrigins("http://localhost:5000").AllowAnyMethod().AllowAnyHeader();
                 });
             });
 

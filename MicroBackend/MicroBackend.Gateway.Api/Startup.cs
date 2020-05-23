@@ -29,7 +29,7 @@ namespace MicroBackend.Gateway.Api
         {
             services.AddCors(c =>
             {
-                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyHeader());
             });
 
             services.AddSwaggerGen(c =>
@@ -47,7 +47,7 @@ namespace MicroBackend.Gateway.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseCors(options => options.AllowAnyOrigin());
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyHeader());
             app.UseHttpsRedirection();
 
             app.UseRouting();
