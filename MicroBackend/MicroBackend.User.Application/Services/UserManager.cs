@@ -67,7 +67,7 @@ namespace MicroBackend.User.Application.Services
             return await _userRepository.IsEmailConfirmedAsync(applicationUser);
         }
 
-        public async Task<IServiceDataResult<ApplicationUsers>> EmailVerifiedAsync(ApplicationUsers applicationUser,string code)
+        public async Task<IServiceDataResult<ApplicationUsers>> EmailVerifiedAsync(ApplicationUsers applicationUser, string code)
         {
             try
             {
@@ -82,9 +82,9 @@ namespace MicroBackend.User.Application.Services
             }
             catch (Exception ex)
             {
-                return new ErrorDataResult<ApplicationUsers>(applicationUser,GlobalErrors.NotCompleted,message: ex.Message);
+                return new ErrorDataResult<ApplicationUsers>(applicationUser, GlobalErrors.NotCompleted, message: ex.Message);
             }
-            
+
         }
 
         public async Task<ApplicationUsers> FindUserByEmail(string email)
@@ -147,13 +147,18 @@ namespace MicroBackend.User.Application.Services
                 {
                     return new SuccessDataResult<ApplicationUsers>(applicationUser);
                 }
-                return new ErrorDataResult<ApplicationUsers>(applicationUser, GlobalErrors.NotCompleted, 
+                return new ErrorDataResult<ApplicationUsers>(applicationUser, GlobalErrors.NotCompleted,
                             message: result.Errors.First().Description);
             }
             catch (Exception ex)
             {
                 return new ErrorDataResult<ApplicationUsers>(applicationUser, GlobalErrors.NotCompleted, message: ex.Message);
             }
+        }
+
+        public async Task<ApplicationUsers> FindByLoginAsync(string loginProvider, string providerKey)
+        {
+            return = await _userRepository.FindByLoginAsync(loginProvider, providerKey);
         }
     }
 }

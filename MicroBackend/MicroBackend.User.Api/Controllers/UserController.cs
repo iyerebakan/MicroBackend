@@ -99,5 +99,12 @@ namespace MicroBackend.User.Api.Controllers
             return Ok(await _userService.CreateAsync(user, register.Password));
         }
 
+        [HttpGet("loginProvider")]
+        public async Task<IActionResult> LoginProviderAsync(string loginProvider,string providerKey)
+        {
+            var user = await _userService.FindByLoginAsync(loginProvider, providerKey);
+            return Ok(user);
+        }
+
     }
 }

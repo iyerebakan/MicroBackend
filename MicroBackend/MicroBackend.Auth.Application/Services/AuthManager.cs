@@ -51,7 +51,13 @@ namespace MicroBackend.Auth.Application.Services
             {
                 if (await new RestClient<ApplicationUsers, bool>(UserAPI.EMAILCONFIRMED).PostAsync(user))
                 {
-                    return new SuccessDataResult<ApplicationUsers>(user);
+                    user = await new RestClient<ApplicationUsers, ApplicationUsers>($"{ UserAPI.LOGINPROVIDER}" +
+                        $"?loginProvider={loginEmail.LoginProvider}&providerKey={loginEmail.LoginProvider}").GetAsync();
+                    if (user != null)
+                    {
+                        return new SuccessDataResult<ApplicationUsers>(user);
+                    }
+                    return new ErrorDataResult<ApplicationUsers>(GlobalErrors.NotFound, "User does not exists..!");
                 }
                 else
                 {

@@ -17,6 +17,7 @@ namespace MicroBackend.User.Application.Interfaces
         Task<ApplicationUsers> UserExists(string email);
         Task<ApplicationUsers> FindUserByEmail(string email);
         Task<ApplicationUsers> GetUserByUserId(string userid);
+        Task<ApplicationUsers> FindByLoginAsync(string loginProvider, string providerKey);
         Task<IServiceDataResult<bool>> AddRoleToUser(RoletoUserDto roletoUserDto);
         Task<bool> CheckPasswordAsync(ApplicationUsers applicationUser, string password);
         Task<bool> CreateAsync(ApplicationUsers applicationUser, string password);
