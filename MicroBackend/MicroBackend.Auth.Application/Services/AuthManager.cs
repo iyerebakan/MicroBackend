@@ -73,7 +73,7 @@ namespace MicroBackend.Auth.Application.Services
             var user = await new RestClient<ApplicationUsers, ApplicationUsers>($"{ UserAPI.USEREXISTS}?email={loginEmailAndPassword.Email}").GetAsync();
             if (user != null)
             {
-                if (user.EmailConfirmed)
+                if (await new RestClient<ApplicationUsers, bool>(UserAPI.EMAILCONFIRMED).PostAsync(user))
                 {
                     var userToCheck = await new RestClient<CheckPasswordDto, bool>($"{UserAPI.CHECKPASSWORD}")
                         .PostAsync(new CheckPasswordDto { ApplicationUsers = user, Password = loginEmailAndPassword.Password });
