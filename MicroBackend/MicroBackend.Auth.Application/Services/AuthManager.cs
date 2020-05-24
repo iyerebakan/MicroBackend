@@ -52,7 +52,7 @@ namespace MicroBackend.Auth.Application.Services
                 if (await new RestClient<ApplicationUsers, bool>(UserAPI.EMAILCONFIRMED).PostAsync(user))
                 {
                     user = await new RestClient<ApplicationUsers, ApplicationUsers>($"{ UserAPI.LOGINPROVIDER}" +
-                        $"?loginProvider={loginEmail.LoginProvider}&providerKey={loginEmail.LoginProvider}").GetAsync();
+                        $"?loginProvider={loginEmail.LoginProvider}&providerKey={loginEmail.ProviderKey}").GetAsync();
                     if (user != null)
                     {
                         return new SuccessDataResult<ApplicationUsers>(user);
