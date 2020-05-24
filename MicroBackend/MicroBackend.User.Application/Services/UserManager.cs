@@ -158,7 +158,7 @@ namespace MicroBackend.User.Application.Services
 
         public async Task<ApplicationUsers> FindByLoginAsync(string loginProvider, string providerKey)
         {
-            return = await _userRepository.FindByLoginAsync(loginProvider, providerKey);
+            return await _userRepository.FindByLoginAsync(loginProvider, providerKey);
         }
     }
 }
