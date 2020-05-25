@@ -1,8 +1,10 @@
-﻿using MicroBackend.Domain.Core.Services.Constants;
+﻿using MicroBackend.Domain.Core.RabbitMq.Bus;
+using MicroBackend.Domain.Core.Services.Constants;
 using MicroBackend.Domain.Core.Services.Interfaces;
 using MicroBackend.Domain.Core.Services.Results;
 using MicroBackend.User.Application.Interfaces;
 using MicroBackend.User.Data.Repository;
+using MicroBackend.User.Domain.Commands;
 using MicroBackend.User.Domain.Dtos;
 using MicroBackend.User.Domain.Dtos.UserDtos;
 using MicroBackend.User.Domain.Models;
@@ -20,9 +22,11 @@ namespace MicroBackend.User.Application.Services
     public class UserManager : IUserService
     {
         private readonly UserRepository _userRepository;
-        public UserManager(UserRepository userRepository)
+        private readonly IEventBus _bus;
+        public UserManager(UserRepository userRepository, IEventBus bus)
         {
             _userRepository = userRepository;
+            _bus = bus;
         }
 
         public async Task<ApplicationUsers> UserExists(string email)
@@ -59,7 +63,17 @@ namespace MicroBackend.User.Application.Services
         public async Task<bool> CreateAsync(ApplicationUsers applicationUser, string password)
         {
             var result = await _userRepository.CreateAsync(applicationUser, password);
-            return result.Succeeded;
+            if (result.Succeeded)
+            {
+                var createUserCommand = new CreatedUserCommand(
+                    applicationUser.UserName,
+                    applicationUser.Email
+                );
+
+                await _bus.SendCommand(createUserCommand);
+                return true;
+            }
+            return false;
         }
 
         public async Task<bool> IsEmailConfirmedAsync(ApplicationUsers applicationUser)

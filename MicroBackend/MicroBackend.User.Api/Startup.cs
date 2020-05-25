@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MicroBackend.Auth.JWT.Services.Encryption;
+using MicroBackend.Infra.IoC;
 using MicroBackend.User.Application.Providers;
 using MicroBackend.User.Data.Context;
 using MicroBackend.User.Domain.Models;
@@ -19,6 +20,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using MediatR;
 
 namespace MicroBackend.User.Api
 {
@@ -32,6 +34,8 @@ namespace MicroBackend.User.Api
         public IConfiguration Configuration { get; }
         private readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         // This method gets called by the runtime. Use this method to add services to the container.
+
+        
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
@@ -84,6 +88,15 @@ namespace MicroBackend.User.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "User Microservice", Version = "v1" });
             });
+
+            services.AddMediatR(typeof(Startup));
+
+            RegisterServices(services);
+        }
+
+        private void RegisterServices(IServiceCollection services)
+        {
+            DependencyContainer.RegisterServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
