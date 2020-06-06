@@ -9,11 +9,13 @@ namespace MicroBackend.User.Domain.Events
     {
         public string Username { get; set; }
         public string Email { get; set; }
+        public string _Id { get; set; }
 
-        public UserCreatedEvent(string  username,string email)
+        public UserCreatedEvent(string  username,string email,string id)
         {
             Username = username;
             Email = email;
+            _Id = id;
         }
     }
 }

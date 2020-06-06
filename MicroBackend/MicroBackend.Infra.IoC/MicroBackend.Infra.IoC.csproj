@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MicroBackend.Authorization.Application\MicroBackend.Authorization.Application.csproj" />
     <ProjectReference Include="..\MicroBackend.Domain.Core\MicroBackend.Domain.Core.csproj" />
     <ProjectReference Include="..\MicroBackend.User.Domain\MicroBackend.User.Domain.csproj" />
   </ItemGroup>

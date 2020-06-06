@@ -4,4 +4,13 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Constants\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MicroBackend.Authorization.Domain\MicroBackend.Authorization.Domain.csproj" />
+    <ProjectReference Include="..\MicroBackend.Domain.Core\MicroBackend.Domain.Core.csproj" />
+  </ItemGroup>
+
 </Project>

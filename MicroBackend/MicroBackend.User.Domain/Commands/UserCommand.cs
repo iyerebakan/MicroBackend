@@ -9,5 +9,6 @@ namespace MicroBackend.User.Domain.Commands
     {
         public string Username { get; protected set; }
         public string Email { get; protected set; }
+        public string _Id { get; protected set; }
     }
 }

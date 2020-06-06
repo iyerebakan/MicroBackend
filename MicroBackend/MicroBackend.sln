@@ -91,21 +91,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBackend.Infra.IoC", "M
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Authorization", "Authorization", "{A7108295-C374-44E7-BCCB-23997CA08430}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBackend.Authorization.Domain", "MicroBackend.Authorization.Domain\MicroBackend.Authorization.Domain.csproj", "{E1337679-3129-4239-9437-B558A244BBD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBackend.Authorization.Domain", "MicroBackend.Authorization.Domain\MicroBackend.Authorization.Domain.csproj", "{E1337679-3129-4239-9437-B558A244BBD6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{C73E6F7F-F364-4F36-A79C-25C839728C28}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{8F5DD000-9013-4F12-9150-532BD2A97829}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{D72F43ED-B157-4C6A-AAC6-344B73F0232E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{2D6F103E-DB6B-4D24-B05C-57B4F85E7711}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBackend.Authorization.Data", "MicroBackend.Authorization.data\MicroBackend.Authorization.Data.csproj", "{D2510A42-2FD6-47CF-91F3-57019C90CEFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBackend.Authorization.Api", "MicroBackend.Authorization.Api\MicroBackend.Authorization.Api.csproj", "{811FEEDD-91C6-4F79-9BC0-A2DBF94F2684}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBackend.Authorization.Api", "MicroBackend.Authorization.Api\MicroBackend.Authorization.Api.csproj", "{811FEEDD-91C6-4F79-9BC0-A2DBF94F2684}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBackend.Authorization.Application", "MicroBackend.Authorization.Application\MicroBackend.Authorization.Application.csproj", "{A429CB6F-6C9A-4985-95A4-486EB86BBEC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroBackend.Authorization.Application", "MicroBackend.Authorization.Application\MicroBackend.Authorization.Application.csproj", "{A429CB6F-6C9A-4985-95A4-486EB86BBEC8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{E1D8C3D7-959B-4512-9C6E-1C5C134A3663}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroBackend.Authorization.Data", "MicroBackend.Authorization.Data\MicroBackend.Authorization.Data.csproj", "{C0813668-4619-4F3E-A9AE-CE5F15F46FDB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -181,10 +181,6 @@ Global
 		{E1337679-3129-4239-9437-B558A244BBD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1337679-3129-4239-9437-B558A244BBD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1337679-3129-4239-9437-B558A244BBD6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D2510A42-2FD6-47CF-91F3-57019C90CEFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D2510A42-2FD6-47CF-91F3-57019C90CEFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D2510A42-2FD6-47CF-91F3-57019C90CEFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D2510A42-2FD6-47CF-91F3-57019C90CEFE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{811FEEDD-91C6-4F79-9BC0-A2DBF94F2684}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{811FEEDD-91C6-4F79-9BC0-A2DBF94F2684}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{811FEEDD-91C6-4F79-9BC0-A2DBF94F2684}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -193,6 +189,10 @@ Global
 		{A429CB6F-6C9A-4985-95A4-486EB86BBEC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A429CB6F-6C9A-4985-95A4-486EB86BBEC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A429CB6F-6C9A-4985-95A4-486EB86BBEC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0813668-4619-4F3E-A9AE-CE5F15F46FDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0813668-4619-4F3E-A9AE-CE5F15F46FDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0813668-4619-4F3E-A9AE-CE5F15F46FDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0813668-4619-4F3E-A9AE-CE5F15F46FDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -240,12 +240,12 @@ Global
 		{A7108295-C374-44E7-BCCB-23997CA08430} = {A47575A7-7356-4E2F-9BAF-C07552A3B5CB}
 		{E1337679-3129-4239-9437-B558A244BBD6} = {C73E6F7F-F364-4F36-A79C-25C839728C28}
 		{C73E6F7F-F364-4F36-A79C-25C839728C28} = {A7108295-C374-44E7-BCCB-23997CA08430}
-		{8F5DD000-9013-4F12-9150-532BD2A97829} = {A7108295-C374-44E7-BCCB-23997CA08430}
 		{D72F43ED-B157-4C6A-AAC6-344B73F0232E} = {A7108295-C374-44E7-BCCB-23997CA08430}
 		{2D6F103E-DB6B-4D24-B05C-57B4F85E7711} = {A7108295-C374-44E7-BCCB-23997CA08430}
-		{D2510A42-2FD6-47CF-91F3-57019C90CEFE} = {8F5DD000-9013-4F12-9150-532BD2A97829}
 		{811FEEDD-91C6-4F79-9BC0-A2DBF94F2684} = {2D6F103E-DB6B-4D24-B05C-57B4F85E7711}
 		{A429CB6F-6C9A-4985-95A4-486EB86BBEC8} = {D72F43ED-B157-4C6A-AAC6-344B73F0232E}
+		{E1D8C3D7-959B-4512-9C6E-1C5C134A3663} = {A7108295-C374-44E7-BCCB-23997CA08430}
+		{C0813668-4619-4F3E-A9AE-CE5F15F46FDB} = {E1D8C3D7-959B-4512-9C6E-1C5C134A3663}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {321CBC5F-1363-45AB-A890-0A2377AC562B}

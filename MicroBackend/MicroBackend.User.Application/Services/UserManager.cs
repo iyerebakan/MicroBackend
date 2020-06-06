@@ -67,7 +67,8 @@ namespace MicroBackend.User.Application.Services
             {
                 var createUserCommand = new CreatedUserCommand(
                     applicationUser.UserName,
-                    applicationUser.Email
+                    applicationUser.Email,
+                    applicationUser.Id
                 );
 
                 await _bus.SendCommand(createUserCommand);

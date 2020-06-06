@@ -22,7 +22,7 @@ namespace MicroBackend.User.Domain.CommandHandlers
         public Task<bool> Handle(CreatedUserCommand request, CancellationToken cancellationToken)
         {
             //publish event to RabbitMQ
-            _bus.Publish(new UserCreatedEvent(request.Username, request.Email));
+            _bus.Publish(new UserCreatedEvent(request.Username, request.Email,request._Id));
 
             return Task.FromResult(true);
         }

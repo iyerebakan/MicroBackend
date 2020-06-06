@@ -1,4 +1,6 @@
 ﻿using MediatR;
+using MicroBackend.Authorization.Application.EventHandlers;
+using MicroBackend.Authorization.Application.Events;
 using MicroBackend.Domain.Core.RabbitMq.Bus;
 using MicroBackend.Domain.Core.RabbitMq.Infrastructures;
 using MicroBackend.User.Domain.CommandHandlers;
@@ -23,6 +25,12 @@ namespace MicroBackend.Infra.IoC
 
             //Domain Banking Commands
             services.AddTransient<IRequestHandler<CreatedUserCommand, bool>, UserCommandHandler>();
+
+            //Subscriptions
+            services.AddTransient<UserEventHandler>();
+
+            //Domain Events
+            services.AddTransient<IEventHandler<UserCreatedEvent>, UserEventHandler>();
         }
     }
 }

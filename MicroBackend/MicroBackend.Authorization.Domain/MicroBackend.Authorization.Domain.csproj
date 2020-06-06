@@ -5,9 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Interfaces\" />
-    <Folder Include="Dtos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MicroBackend.Domain.Core\MicroBackend.Domain.Core.csproj" />
   </ItemGroup>
 
 </Project>
