@@ -3,7 +3,6 @@ using MicroBackend.Domain.Core.RabbitMq.Bus;
 using MicroBackend.Domain.Core.RabbitMq.Infrastructures;
 using MicroBackend.User.Domain.CommandHandlers;
 using MicroBackend.User.Domain.Commands;
-using MicroBackend.User.Domain.Events;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
