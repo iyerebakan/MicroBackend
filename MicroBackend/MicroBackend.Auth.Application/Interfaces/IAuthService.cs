@@ -1,11 +1,11 @@
 ﻿using MicroBackend.Auth.Domain.Dtos;
-using MicroBackend.Auth.Domain.Models;
 using MicroBackend.Domain.Core.Services.Interfaces;
 using MicroBackend.Domain.Core.Security.Token;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using MicroBackend.Auth.Domain.Models;
 
 namespace MicroBackend.Auth.Application.Interfaces
 {

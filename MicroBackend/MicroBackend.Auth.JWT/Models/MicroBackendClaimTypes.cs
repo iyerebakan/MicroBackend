@@ -10,22 +10,22 @@ namespace MicroBackend.Auth.JWT.Models
         /// <summary>
         /// Default: <see cref="ClaimTypes.Name"/>
         /// </summary>
-        public static string UserName { get; set; } = ClaimTypes.Name;
+        public static string UserName { get; set; } ="name";
 
         /// <summary>
         /// Default: <see cref="ClaimTypes.NameIdentifier"/>
         /// </summary>
-        public static string UserId { get; set; } = ClaimTypes.NameIdentifier;
+        public static string UserId { get; set; } = "nameIdentifier";
 
         /// <summary>
         /// Default: <see cref="ClaimTypes.Role"/>
         /// </summary>
-        public static string Role { get; set; } = ClaimTypes.Role;
+        public static string Role { get; set; } = "role";
 
         /// <summary>
         /// Default: <see cref="ClaimTypes.Email"/>
         /// </summary>
-        public static string Email { get; set; } = ClaimTypes.Email;
+        public static string Email { get; set; } = "email";
 
         /// <summary>
         /// Default: "email_verified".

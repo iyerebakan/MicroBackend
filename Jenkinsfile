@@ -21,18 +21,26 @@ pipeline {
 	stage('Identity Deploy') {
             steps {
                 echo 'Deploy Starts!'
-                bat "\"C:/Program Files/dotnet/dotnet.exe\" publish \"C:/Projects/MicroBackend/MicroBackend/MicroBackend.Auth.Api\" --output \"C:/WebApis/IdentityServer\""
+                bat "\"C:/Program Files/dotnet/dotnet.exe\" publish \"C:/Projects/MicroBackend/MicroBackend/MicroBackend.Auth.Api\" --output \"C:/WebApis/IdentityAPI\""
                 echo 'Deploy Ends'
             }
         }		
         
-        stage('Gateway Deploy') {
+    stage('Gateway Deploy') {
             steps {
                 echo 'Deploy Starts!'
-                bat "\"C:/Program Files/dotnet/dotnet.exe\" publish \"C:/Projects/MicroBackend/MicroBackend/MicroBackend.Gateway.Api\" --output \"C:/WebApis/ApiGateway\""
+                bat "\"C:/Program Files/dotnet/dotnet.exe\" publish \"C:/Projects/MicroBackend/MicroBackend/MicroBackend.Gateway.Api\" --output \"C:/WebApis/GatewayAPI\""
                 echo 'Deploy Ends'
             }
         }	
+
+    stage('User API Deploy') {
+            steps {
+                echo 'Deploy Starts!'
+                bat "\"C:/Program Files/dotnet/dotnet.exe\" publish \"C:/Projects/MicroBackend/MicroBackend/MicroBackend.User.Api\" --output \"C:/WebApis/UserAPI\""
+                echo 'Deploy Ends'
+            }
+        }
 
     }
 }

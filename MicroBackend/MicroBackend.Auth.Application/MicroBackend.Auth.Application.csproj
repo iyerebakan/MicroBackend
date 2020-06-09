@@ -10,10 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MicroBackend.Auth.Data\MicroBackend.Auth.Data.csproj" />
     <ProjectReference Include="..\MicroBackend.Auth.Domain\MicroBackend.Auth.Domain.csproj" />
     <ProjectReference Include="..\MicroBackend.Auth.JWT\MicroBackend.Auth.JWT.csproj" />
