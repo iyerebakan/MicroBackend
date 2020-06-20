@@ -1,6 +1,8 @@
 using MediatR;
 using MicroBackend.Authorization.Application.EventHandlers;
 using MicroBackend.Authorization.Application.Events;
+using MicroBackend.Domain.Core.Cache.Interfaces;
+using MicroBackend.Domain.Core.Cache.Services;
 using MicroBackend.Domain.Core.RabbitMq.Bus;
 using MicroBackend.Infra.IoC;
 using Microsoft.AspNetCore.Builder;
@@ -9,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using StackExchange.Redis;
 
 namespace MicroBackend.Authorization.Api
 {
@@ -24,7 +27,10 @@ namespace MicroBackend.Authorization.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           
+            services.AddSingleton<IConnectionMultiplexer>(x =>
+                ConnectionMultiplexer.Connect(Configuration.GetValue<string>("RedisConnection")));
+
+            services.AddSingleton<ICacheService, RedisCacheService>();
             services.AddControllers();
             services.AddMediatR(typeof(Startup));
             RegisterServices(services);
