@@ -5,7 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Repository\" />
+    <ProjectReference Include="..\MicroBackend.Authorization.Domain\MicroBackend.Authorization.Domain.csproj" />
+    <ProjectReference Include="..\MicroBackend.Domain.Core\MicroBackend.Domain.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -171,6 +171,11 @@ namespace MicroBackend.Domain.Core.Mongo.Models
             return collection.FindAsync<TMongoEntity>(condition).Result.ToList() ?? new List<TMongoEntity>();
         }
 
+        public List<TMongoEntity> GetList()
+        {
+            return collection.FindAsync<TMongoEntity>(_ => true).Result.ToList() ?? new List<TMongoEntity>();
+        }
+
         public async Task<List<TMongoEntity>> GetItemsByConditionAndSortExpAsync(Expression<Func<TMongoEntity, bool>> where, int skip, int take, Expression<Func<TMongoEntity, object>> sort, bool isAscending)
         {
             if (isAscending)

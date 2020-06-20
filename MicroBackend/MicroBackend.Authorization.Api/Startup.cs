@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using MediatR;
 using MicroBackend.Authorization.Application.EventHandlers;
 using MicroBackend.Authorization.Application.Events;
@@ -9,12 +5,10 @@ using MicroBackend.Domain.Core.RabbitMq.Bus;
 using MicroBackend.Infra.IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 
 namespace MicroBackend.Authorization.Api
 {
@@ -30,9 +24,15 @@ namespace MicroBackend.Authorization.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+           
             services.AddControllers();
             services.AddMediatR(typeof(Startup));
             RegisterServices(services);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Authorization Microservice", Version = "v1" });
+            });
         }
 
         private void RegisterServices(IServiceCollection services)
@@ -53,6 +53,13 @@ namespace MicroBackend.Authorization.Api
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Authorization Microservice V1");
+            });
+
 
             app.UseEndpoints(endpoints =>
             {
