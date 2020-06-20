@@ -37,7 +37,7 @@ namespace MicroBackend.Authorization.Application.Services
                 }
                 var formUserDtos = new List<FormUserDto>();
 
-                foreach (var privilege in userPrivileges)
+                /*foreach (var privilege in userPrivileges)
                 {
                     var form = _formService.GetById(privilege.FormId);
                     var folder = _folderService.GetById(form.FolderId);
@@ -49,7 +49,7 @@ namespace MicroBackend.Authorization.Application.Services
                         FolderName = folder.Name,
                         FormName = form.Name
                     });
-                }
+                }*/
 
                 var userPrivilegesDto = new UserPrivilegesDto()
                 {

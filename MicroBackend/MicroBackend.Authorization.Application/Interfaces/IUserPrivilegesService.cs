@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MicroBackend.Authorization.Application.Interfaces
 {
-    public interface IUserPrivilegesService : IMongoRepository<UserPrivilege>
+    public interface IUserPrivilegesService
     {
         IServiceDataResult<UserPrivilegesDto>  GetUserPrivilegesDto(string userId);
     }

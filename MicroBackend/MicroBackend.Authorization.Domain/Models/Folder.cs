@@ -7,10 +7,7 @@ namespace MicroBackend.Authorization.Domain.Models
 {
     public class Folder : MongoEntity<string>
     {
-        public Folder()
-        {
-            this.Locked = true;
-        }
+       
         public string Name { get; set; }
         public string Description { get; set; }
         public string MasterFolderId { get; set; }

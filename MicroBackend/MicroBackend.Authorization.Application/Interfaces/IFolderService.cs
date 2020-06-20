@@ -6,7 +6,9 @@ using System.Text;
 
 namespace MicroBackend.Authorization.Application.Interfaces
 {
-    public interface IFolderService : IMongoRepository<Folder>
+    public interface IFolderService
     {
+        void Add(Folder folder);
+        string FolderNameById(string Id);
     }
 }
