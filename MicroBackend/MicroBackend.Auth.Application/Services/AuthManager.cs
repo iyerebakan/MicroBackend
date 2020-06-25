@@ -1,24 +1,19 @@
-﻿using MicroBackend.Auth.Application.Interfaces;
+﻿using MicroBackend.Auth.Application.Constants;
+using MicroBackend.Auth.Application.Interfaces;
+using MicroBackend.Auth.Application.ValidationRules;
 using MicroBackend.Auth.Domain.Dtos;
+using MicroBackend.Auth.Domain.Dtos.AuthDtos;
 using MicroBackend.Auth.Domain.Models;
+using MicroBackend.Auth.JWT.Security.Token;
+using MicroBackend.Domain.Core.Log.Logger;
+using MicroBackend.Domain.Core.Log.Services;
+using MicroBackend.Domain.Core.RestClient;
 using MicroBackend.Domain.Core.Services.Constants;
 using MicroBackend.Domain.Core.Services.Interfaces;
 using MicroBackend.Domain.Core.Services.Results;
-using MicroBackend.Domain.Core.Security.Token;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using MicroBackend.Domain.Core.Validation;
-using MicroBackend.Auth.Application.ValidationRules;
-using MicroBackend.Domain.Core.Services.Business;
-using MicroBackend.Domain.Core.Log.Services;
-using MicroBackend.Domain.Core.Log.Logger;
-using Castle.Core.Logging;
-using MicroBackend.Domain.Core.RestClient;
-using MicroBackend.Auth.Application.Constants;
-using System.Runtime.InteropServices;
-using MicroBackend.Auth.Domain.Dtos.AuthDtos;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MicroBackend.Auth.Application.Services
 {
@@ -37,7 +32,7 @@ namespace MicroBackend.Auth.Application.Services
             var tokenInfo = new TokenInfo
             {
                 Email = applicationUser.Email,
-                Roles =  roles != null ?  roles.ToArray() : new string[] { },
+                Roles = roles != null ? roles.ToArray() : new string[] { },
                 Id = applicationUser.Id,
                 UserName = applicationUser.UserName
             };

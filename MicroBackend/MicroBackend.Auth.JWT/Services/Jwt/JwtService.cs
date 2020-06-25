@@ -1,6 +1,6 @@
 ﻿using MicroBackend.Auth.JWT.Models;
+using MicroBackend.Auth.JWT.Security.Token;
 using MicroBackend.Auth.JWT.Services.Encryption;
-using MicroBackend.Domain.Core.Security.Token;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -9,7 +9,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.IO;
 using System.Linq;
 using System.Security.Claims;
-using System.Text;
+
 
 namespace MicroBackend.Auth.JWT.Services.Jwt
 {
@@ -24,7 +24,7 @@ namespace MicroBackend.Auth.JWT.Services.Jwt
             string appsettingsPath = Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json");
             configurationBuilder.AddJsonFile(appsettingsPath, false);
 
-            Configuration = configurationBuilder.Build();            
+            Configuration = configurationBuilder.Build();
             _tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
         }
 
@@ -41,7 +41,7 @@ namespace MicroBackend.Auth.JWT.Services.Jwt
             {
                 Token = token,
                 Expiration = _accessTokenExpiration,
-                
+
             };
         }
 

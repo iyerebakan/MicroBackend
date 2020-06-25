@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MicroBackend.Domain.Core.Security.Token
+namespace MicroBackend.Auth.JWT.Security.Token
 {
     public class TokenInfo
     {
