@@ -1,14 +1,8 @@
 ﻿using Autofac;
-using Autofac.Extras.DynamicProxy;
-using Castle.DynamicProxy;
 using MicroBackend.Auth.Application.Interfaces;
 using MicroBackend.Auth.Application.Services;
+using MicroBackend.Auth.JWT.Security.Token;
 using MicroBackend.Auth.JWT.Services.Jwt;
-using MicroBackend.Domain.Core.Interceptors;
-using MicroBackend.Domain.Core.Security.Token;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MicroBackend.Auth.Application.DependencyInjection
 {
