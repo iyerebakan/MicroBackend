@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MicroBackend.Authorization.Application\MicroBackend.Authorization.Application.csproj" />
+    <ProjectReference Include="..\MicroBackend.Domain.Core\MicroBackend.Domain.Core.csproj" />
+    <ProjectReference Include="..\MicroBackend.User.Domain\MicroBackend.User.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
