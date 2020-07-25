@@ -47,7 +47,7 @@ namespace MicroBackend.User.Api.Controllers
         {
             return Ok(await _userService.AddRoleToUser(roletoUserDto));
         }
-
+            
         [HttpPost("generatePasswordVerificationCode")]
         public async Task<IActionResult> GeneratePasswordVerificationCode(string email)
         {
